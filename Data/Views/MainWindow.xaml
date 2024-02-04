@@ -82,7 +82,7 @@
                         Command="{Binding CloseWindow}" 
                         CommandParameter="{Binding ElementName=ThisWindow}"
                         Style="{DynamicResource TemplateTransparentToRed}">
-                    <Image Source="\Data\Images\close_window.png" Margin="2"/>
+                    <Image Source="\Data\Images\close_window.png"/>
                 </Button>
 
             </StackPanel>

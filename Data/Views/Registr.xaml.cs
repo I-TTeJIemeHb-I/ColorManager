@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.Eventing.Reader;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -29,6 +31,16 @@ namespace ColorManager.Data.Views
             MainWindow form = new MainWindow();
             form.Show();
             this.Hide();
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            MainWindow form = new MainWindow();
+            form.Show();
+            this.Hide();
+            MessageBox.Show($"Вы успешно авторизированны!");
+
+            
         }
     }
 }

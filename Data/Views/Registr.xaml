@@ -17,7 +17,7 @@
                 </TransformGroup>
             </Label.RenderTransform>
         </Label>
-        <Button Content="Авторизироваться" HorizontalAlignment="Center" Margin="0,350,0,0" VerticalAlignment="Top" Height="43" Width="116"/>
+        <Button x:Name="Avtor" Content="Авторизироваться" HorizontalAlignment="Center" Margin="0,350,0,0" VerticalAlignment="Top" Height="43" Width="116" Click="Button_Click_1"/>
         <Label Content="E.mail" HorizontalAlignment="Left" Margin="244,137,0,0" VerticalAlignment="Top" Width="78" Height="44" FontSize="20" FontFamily="Yu Gothic"/>
         <Label Content="Login" HorizontalAlignment="Left" Margin="244,189,0,0" VerticalAlignment="Top" Width="68" Height="48" FontSize="20" FontFamily="Yu Gothic"/>
         <Label Content="Password" HorizontalAlignment="Left" Margin="223,250,0,0" VerticalAlignment="Top" Width="99" Height="44" FontSize="20" FontFamily="Yu Gothic"/>
