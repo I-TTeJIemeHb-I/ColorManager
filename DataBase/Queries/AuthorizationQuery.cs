@@ -1,5 +1,4 @@
 ﻿using ColorManager.Data.Models;
-using ColorManager.Data.Views.Authorization;
 using System;
 using System.Linq;
 using System.Net;
@@ -29,8 +28,9 @@ namespace ColorManager.DataBase.Queries
             securityCode = random.Next(100000, 999999).ToString();
 
             // Код для отправки письма на почту
-            // Пока заменим
-            MessageBox.Show(securityCode);
+            string theme = "ColorBase: Одноразовый код подтверждения";
+            string text = $"Код: {securityCode}. Если это письмо пришло вам случайным образом - рекомендуем сменить пароль и написать в службу технической поддержки";
+            EmailSender.Send("colorbasesender@gmail.com", User.Email, theme, text);
         }
 
 
@@ -119,12 +119,12 @@ namespace ColorManager.DataBase.Queries
                     // Возможность регистрации - присутствует
                     else
                     {
-                        // Отправляем одноразовый код на почту
-                        SendCodeToEmail(email);
                         // Подготавливаем данные для регистрации
                         User.Login = login;
                         User.Email = email;
                         User.Password = password;
+                        // Отправляем одноразовый код на почту
+                        SendCodeToEmail(email);
 
                         return true;
                     }
@@ -157,12 +157,12 @@ namespace ColorManager.DataBase.Queries
 
                     if (user != null)
                     {
-                        // Отправляем одноразовый код на почту
-                        SendCodeToEmail(email);
                         // Подготавливаем данные для регистрации
                         User.Login = login;
                         User.Email = email;
-                        user.Password = password;
+                        User.Password = password;
+                        // Отправляем одноразовый код на почту
+                        SendCodeToEmail(email);
 
                         return true;
                     }
