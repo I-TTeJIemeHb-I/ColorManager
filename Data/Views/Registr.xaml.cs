@@ -4,6 +4,7 @@ using System.Diagnostics.Eventing.Reader;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -35,12 +36,21 @@ namespace ColorManager.Data.Views
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
+
+            if (Regex.IsMatch(textBox1.Text, @"(@)"))
+            {
+                
             MainWindow form = new MainWindow();
             form.Show();
             this.Hide();
             MessageBox.Show($"Вы успешно авторизированны!");
+            }
+            else
+            {
+                MessageBox.Show("не корректный адресс");
+            }
 
-            
+
         }
     }
 }

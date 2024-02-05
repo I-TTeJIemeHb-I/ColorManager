@@ -26,16 +26,16 @@ namespace ColorManager.Data.Views
             {
                 var users = db.Users;
 
-                var user = users.FirstOrDefault(u => u.Login == "1" && u.Password == "1");
+                //var user = users.FirstOrDefault(u => u.Login == "1" && u.Password == "1");
 
-                if (user != null)
-                {
-                    MessageBox.Show($"Имя пользователя: {user.Name}");
-                }
-                else
-                {
-                    MessageBox.Show($"Такого пользователя не существует");
-                }
+                //if (user != null)
+                //{
+                //    MessageBox.Show($"Имя пользователя: {user.Name}");
+                //}
+                //else
+                //{
+                //    MessageBox.Show($"Такого пользователя не существует");
+                //}
             }
         }
 
