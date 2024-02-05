@@ -55,7 +55,10 @@
                    VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
 
             <Button Grid.Column="2" Height="30" Width="30" Margin="5"
-                        Style="{DynamicResource TemplateTransparentToRed}">
+                    Visibility="{Binding MainModel.SettingsVisibility}"
+                    Command="{Binding GoToSettingsPage}"
+                    CommandParameter="{Binding ElementName=ThisWindow}"
+                    Style="{DynamicResource TemplateTransparentToRed}">
                 <svgc:SvgViewbox Source="/Data/Images/settings.svg" Margin="4"/>
             </Button>
 
@@ -96,6 +99,11 @@
                     <i:EventTrigger EventName="Loaded">
                         <i:InvokeCommandAction
                             Command="{Binding FrameLoaded}"
+                            CommandParameter="{Binding ElementName=MainFrame}"/>
+                    </i:EventTrigger>
+                    <i:EventTrigger EventName="Navigated">
+                        <i:InvokeCommandAction
+                            Command="{Binding Navigating}"
                             CommandParameter="{Binding ElementName=MainFrame}"/>
                     </i:EventTrigger>
                 </i:Interaction.Triggers>

@@ -58,11 +58,10 @@ namespace ColorManager.DataBase.Queries
                         if (user.Password == password)
                         {
                             // Передаём информацию в статический класс
+                            MainModel.getInstance().Login = user.Login;
                             User.Login = user.Login;
                             User.Email = user.Email;
                             User.IsAuthorizate = true;
-                            // Отображаем Футер
-                            MainModel.getInstance().FooterVisibility = Visibility.Visible;
                             // Передаём в базу данных текущий IP-адрес
                             //user.IP = address[0].ToString();
                             //db.SaveChanges();

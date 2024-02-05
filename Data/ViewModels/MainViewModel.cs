@@ -14,6 +14,7 @@ namespace ColorManager.Data.ViewModels
 {
     public class MainViewModel : INotifyPropertyChanged
     {
+
         #region INotifyPropertyChanged
 
         public event PropertyChangedEventHandler? PropertyChanged;
@@ -115,12 +116,16 @@ namespace ColorManager.Data.ViewModels
         #endregion
 
 
+        #region Навигация
+
+        private RelayCommand _frameLoaded;
         private RelayCommand _navigate;
+
         public RelayCommand FrameLoaded
         {
             get
             {
-                return _navigate ??=
+                return _frameLoaded ??=
                     new RelayCommand(obj =>
                     {
                         Frame frame = obj as Frame;
@@ -128,6 +133,55 @@ namespace ColorManager.Data.ViewModels
                     });
             }
         }
+
+        public RelayCommand Navigating
+        {
+            get
+            {
+                return _navigate ??=
+                    new RelayCommand(obj =>
+                    {
+                        Frame frame = obj as Frame;
+                        
+                        if (frame.Content is Page currentPage)
+                        {
+                            string Title = currentPage.Title;
+
+                            if (Title == "SignInPage" || Title == "SignUpPage" || Title == "ConfirmationPage" || Title == "RecoverPage")
+                            {
+                                MainModel.SettingsVisibility = Visibility.Hidden;
+                                MainModel.ProfileVisibility = Visibility.Hidden;
+                                MainModel.FooterVisibility = Visibility.Hidden;
+                            }
+                            else
+                            {
+                                MainModel.SettingsVisibility = Visibility.Visible;
+                                MainModel.ProfileVisibility = Visibility.Visible;
+                                MainModel.FooterVisibility = Visibility.Visible;
+                            }
+
+                            if (Title == "HomePage")
+                            {
+                                // Дабы не допускать перехода на страницу авторизации - очищаем историю навигации
+                                while (frame.CanGoBack)
+                                {
+                                    try
+                                    {
+                                        frame.RemoveBackEntry();
+                                    }
+                                    catch
+                                    {
+                                        break;
+                                    }
+                                }
+                            }
+                        }
+
+                    });
+            }
+        }
+
+        #endregion
 
     }
 }

@@ -51,6 +51,8 @@ namespace ColorManager.Data.Models
         private string _versionPriceList;   // Дата последнего обновления таблицы с прайс-листом из Базы Данных
         private string _currentProject;     // Название открытого на текущий момент проекта
         private Visibility _footerVisibility; // Видимость футера
+        private Visibility _settingsVisibility; // Видимость кнопки настроек 
+        private Visibility _profileVisibility;  // Видимость кнопки профиля
 
         public string Login
         {
@@ -130,19 +132,41 @@ namespace ColorManager.Data.Models
             }
         }
 
+        public Visibility SettingsVisibility
+        {
+            get { return _settingsVisibility; }
+            set
+            {
+                if (_settingsVisibility != value)
+                {
+                    _settingsVisibility = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        public Visibility ProfileVisibility
+        {
+            get { return _profileVisibility; }
+            set
+            {
+                if (_profileVisibility != value)
+                {
+                    _profileVisibility = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+
         #endregion
 
 
         public MainModel()
         {
-            // Данные, получаемые из Базы Данных
-            Login = "aboba";
             AmountOfRecipes = 1273;
             VersionDataBase = "02.02.2024";
             VersionPriceList = "02.02.20224";
-
-            // Данные по умолчанию
-            FooterVisibility = Visibility.Hidden;
         }
 
     }
