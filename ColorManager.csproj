@@ -5,12 +5,16 @@
     <TargetFramework>net6.0-windows</TargetFramework>
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
+    <Version>1.0.0.0</Version>
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Data\Images\back.ico" />
     <None Remove="Data\Images\close_window.png" />
     <None Remove="Data\Images\full_window.png" />
     <None Remove="Data\Images\hide_window.png" />
+    <None Remove="Data\Images\next.ico" />
+    <None Remove="Data\Images\next_white.png" />
     <None Remove="Data\Images\settings.svg" />
   </ItemGroup>
 
@@ -23,6 +27,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Data\Images\back.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Data\Images\close_window.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
@@ -30,6 +37,12 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Data\Images\hide_window.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Data\Images\next.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Data\Images\next_white.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Data\Images\settings.svg">

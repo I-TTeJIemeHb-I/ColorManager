@@ -5,6 +5,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace ColorManager.Data.Models
 {
@@ -21,6 +22,27 @@ namespace ColorManager.Data.Models
         #endregion
 
 
+        #region Synglton
+
+        private static MainModel instance;
+        private static object syncRoot = new Object();
+
+        public static MainModel getInstance()
+        {
+            if (instance == null)
+            {
+                lock (syncRoot)
+                {
+                    if (instance == null)
+                        instance = new MainModel();
+                }
+            }
+            return instance;
+        }
+
+        #endregion
+
+
         #region Свойства класса
 
         private string _login;              // Логин авторизованного пользователя
@@ -28,6 +50,7 @@ namespace ColorManager.Data.Models
         private string _versionDataBase;    // Дата последнего обновления таблицы рецептов из Базы Данных
         private string _versionPriceList;   // Дата последнего обновления таблицы с прайс-листом из Базы Данных
         private string _currentProject;     // Название открытого на текущий момент проекта
+        private Visibility _footerVisibility; // Видимость футера
 
         public string Login
         {
@@ -94,6 +117,19 @@ namespace ColorManager.Data.Models
             }
         }
 
+        public Visibility FooterVisibility
+        {
+            get { return _footerVisibility; }
+            set
+            {
+                if (_footerVisibility != value)
+                {
+                    _footerVisibility = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
         #endregion
 
 
@@ -104,8 +140,9 @@ namespace ColorManager.Data.Models
             AmountOfRecipes = 1273;
             VersionDataBase = "02.02.2024";
             VersionPriceList = "02.02.20224";
-            // Название открытого проекта
-            CurrentProject = "Project 1";
+
+            // Данные по умолчанию
+            FooterVisibility = Visibility.Hidden;
         }
 
     }

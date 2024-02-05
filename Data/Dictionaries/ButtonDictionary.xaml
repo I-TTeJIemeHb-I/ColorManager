@@ -396,8 +396,8 @@
 
     <!--Стиль для чёрных круглых кнопок со стрелкой внутри и простенькой анимацией-->
     <Style x:Key="TemplateBlackToRedRounded" TargetType="Button">
-        <Setter Property="BorderBrush" Value="Black"/>
-        <Setter Property="Background" Value="Black"/>
+        <Setter Property="BorderBrush" Value="#000000"/>
+        <Setter Property="Background" Value="#000000"/>
         <Setter Property="Foreground" Value="White"/>
         <Setter Property="VerticalContentAlignment" Value="Center"/>
         <Setter Property="HorizontalContentAlignment" Value="Center"/>
@@ -408,40 +408,73 @@
                 <ControlTemplate TargetType="Button">
                     <Border x:Name="border" Background="{TemplateBinding Background}" CornerRadius="30" UseLayoutRounding="True">
                         <Grid>
-                            <Image Source="\Data\UI\Images\next_white.png" Margin="13"/>
+                            <Image Source="\Data\Images\next_white.png" Margin="13"/>
                         </Grid>
                     </Border>
                     <ControlTemplate.Triggers>
                         <MultiTrigger>
                             <MultiTrigger.Conditions>
+                                <Condition Property="IsEnabled" Value="True"/>
+                                <Condition Property="IsMouseOver" Value="False"/>
+                            </MultiTrigger.Conditions>
+                            <MultiTrigger.EnterActions>
+                                <BeginStoryboard x:Name="ButtonIsEnabled">
+                                    <Storyboard >
+                                        <ColorAnimation Storyboard.TargetProperty="Background.Color" Storyboard.TargetName="border" From="#5E5E5E" To="#000000" Duration="0:0:0:0.2"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </MultiTrigger.EnterActions>
+                            <MultiTrigger.ExitActions>
+                                <StopStoryboard BeginStoryboardName="ButtonIsEnabled"/>
+                            </MultiTrigger.ExitActions>
+                        </MultiTrigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsEnabled" Value="False"/>
+                            </MultiTrigger.Conditions>
+                            <MultiTrigger.EnterActions>
+                                <BeginStoryboard x:Name="ButtonNotEnabled">
+                                    <Storyboard >
+                                        <ColorAnimation Storyboard.TargetProperty="Background.Color" Storyboard.TargetName="border" From="#000000" To="#5E5E5E" Duration="0:0:0:0.2"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </MultiTrigger.EnterActions>
+                            <MultiTrigger.ExitActions>
+                                <StopStoryboard BeginStoryboardName="ButtonNotEnabled"/>
+                            </MultiTrigger.ExitActions>
+                        </MultiTrigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsEnabled" Value="True"/>
                                 <Condition Property="IsMouseOver" Value="True"/>
                                 <Condition Property="IsPressed" Value="False"/>
                             </MultiTrigger.Conditions>
                             <MultiTrigger.EnterActions>
-                                <BeginStoryboard x:Name="MouseOverNotPressed">
+                                <BeginStoryboard x:Name="MouseOver">
                                     <Storyboard >
                                         <ColorAnimation Storyboard.TargetProperty="Background.Color" Storyboard.TargetName="border" From="#000000" To="#B74741" Duration="0:0:0:0.2"/>
                                     </Storyboard>
                                 </BeginStoryboard>
                             </MultiTrigger.EnterActions>
                             <MultiTrigger.ExitActions>
-                                <StopStoryboard BeginStoryboardName="MouseOverNotPressed"/>
+                                <StopStoryboard BeginStoryboardName="MouseOver"/>
                             </MultiTrigger.ExitActions>
                         </MultiTrigger>
                         <MultiTrigger>
                             <MultiTrigger.Conditions>
-                                <Condition Property="IsMouseOver" Value="False"/>
-                                <Condition Property="IsPressed" Value="False"/>
+                                <Condition Property="IsEnabled" Value="True"/>
+                                <Condition Property="IsMouseOver" Value="True"/>
+                                <Condition Property="IsPressed" Value="True"/>
                             </MultiTrigger.Conditions>
                             <MultiTrigger.EnterActions>
-                                <BeginStoryboard x:Name="MouseLeaveNotPressed">
+                                <BeginStoryboard x:Name="MousePressed">
                                     <Storyboard >
-                                        <ColorAnimation Storyboard.TargetProperty="Background.Color" Storyboard.TargetName="border" To="Black" Duration="0:0:0:0.2"/>
+                                        <ColorAnimation Storyboard.TargetProperty="Background.Color" Storyboard.TargetName="border" From="#B74741" To="#000000" Duration="0:0:0:0.2"/>
                                     </Storyboard>
                                 </BeginStoryboard>
                             </MultiTrigger.EnterActions>
                             <MultiTrigger.ExitActions>
-                                <StopStoryboard BeginStoryboardName="MouseLeaveNotPressed"/>
+                                <StopStoryboard BeginStoryboardName="MousePressed"/>
                             </MultiTrigger.ExitActions>
                         </MultiTrigger>
                     </ControlTemplate.Triggers>
@@ -449,6 +482,6 @@
             </Setter.Value>
         </Setter>
     </Style>
-
+    
 
 </ResourceDictionary>

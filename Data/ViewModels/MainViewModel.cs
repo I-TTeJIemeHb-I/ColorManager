@@ -38,7 +38,7 @@ namespace ColorManager.Data.ViewModels
             MinWidth = 1200;
             MaxHeight = SystemParameters.MaximizedPrimaryScreenHeight;
             MaxWidth = SystemParameters.MaximizedPrimaryScreenWidth;
-            MainModel = new MainModel();
+            MainModel = MainModel.getInstance();
         }
 
 
@@ -124,7 +124,7 @@ namespace ColorManager.Data.ViewModels
                     new RelayCommand(obj =>
                     {
                         Frame frame = obj as Frame;
-                        frame.Navigate(new Views.TestPage1());
+                        frame.Navigate(new Views.Authorization.SignInPage());
                     });
             }
         }

@@ -17,9 +17,9 @@
         <WindowChrome CaptionHeight="0"/>
     </WindowChrome.WindowChrome>
 
-    <!--<Window.DataContext>
+    <Window.DataContext>
         <vm:MainViewModel/>
-    </Window.DataContext>-->
+    </Window.DataContext>
 
     <Grid>
         <Grid.ColumnDefinitions>
@@ -91,7 +91,7 @@
 
 
         <Grid x:Name="Body" Grid.Row="1" Grid.Column="1" Background="Transparent">
-            <Frame x:Name="MainFrame">
+            <Frame x:Name="MainFrame" NavigationUIVisibility="Hidden">
                 <i:Interaction.Triggers>
                     <i:EventTrigger EventName="Loaded">
                         <i:InvokeCommandAction
@@ -100,12 +100,10 @@
                     </i:EventTrigger>
                 </i:Interaction.Triggers>
             </Frame>
-            <Button x:Name="Vxod" Content="Войти" HorizontalAlignment="Center" Margin="0,394,0,0" VerticalAlignment="Top" Height="66" Width="128" FontSize="30" Click="Button_Click1"/>
-            <Button x:Name="Registr" Content="Зарегистрироваться" HorizontalAlignment="Center" Margin="0,300,0,0" VerticalAlignment="Top" Height="65" Width="296" FontSize="30" Click="Button_Click"/>
         </Grid>
 
 
-        <Grid x:Name="Footer" Grid.Row="2" Grid.ColumnSpan="3" Background="#EDEDED">
+        <Grid x:Name="Footer" Grid.Row="2" Grid.ColumnSpan="3" Background="#EDEDED" Visibility="{Binding MainModel.FooterVisibility}">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
