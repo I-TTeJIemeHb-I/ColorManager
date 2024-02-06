@@ -17,7 +17,7 @@ namespace ColorManager.DataBase.Queries
                 message.Subject = messageTheme;
                 // Текст письма
                 message.Body = messageText;
-                // Добавление файла в письмо при наличии пути к файля
+                // Добавление файла в письмо при наличии пути к файлу
                 if (filePath != null)
                 {
                     message.Attachments.Add(new Attachment(filePath));
