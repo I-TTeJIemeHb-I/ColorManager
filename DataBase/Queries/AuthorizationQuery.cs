@@ -38,10 +38,46 @@ namespace ColorManager.DataBase.Queries
 
         //}
 
-        //public static bool AutoSignIn()
-        //{
 
-        //}
+
+        /// <summary>
+        /// Выполняет автоматизированный вход в профиль
+        /// </summary>
+        /// <returns>true при успешном входе в профиль/ false прине нахождении пользователя с указанным IP</returns>
+        public static bool AutoSignIn()
+        {
+            try
+            {
+                using (var db = new ApplicationContext())
+                {
+
+                    // Ищет пользователя с полученным IP и возвращает null или экземпляр класса Users
+                    var user = db.Users.FirstOrDefault(u => u.IP == address[0].ToString());
+
+                    // Если пользователь по указанному IP найден
+                    if (user != null)
+                    {
+                        MainModel.getInstance().Login = user.Login;
+                        User.Login = user.Login;
+                        User.Email = user.Email;
+                        User.IsAuthorizate = true;
+
+                        return true;
+                    }
+                    // Если пользователь по указанному IP не найден
+                    else
+                    {
+                        MessageBox.Show("Пользователь с вашим IP адрессом не найден", "Color Manager: Авторизация", MessageBoxButton.OK, MessageBoxImage.Error);
+                        return false;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Color Manager: Авторизация", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+        }
 
 
         /// <summary>
@@ -56,10 +92,10 @@ namespace ColorManager.DataBase.Queries
             {
                 using (var db = new ApplicationContext())
                 {
-                    var users = db.Users;
+                    //var users = db.Users;
 
                     // Ищет пользователя с полученным Login и возвращает null или экземпляр класса Users
-                    var user = users.FirstOrDefault(u => u.Login == login);
+                    var user = db.Users.FirstOrDefault(u => u.Login == login);
 
                     // Если пользователь по указанному логину найден
                     if (user != null)
@@ -73,8 +109,8 @@ namespace ColorManager.DataBase.Queries
                             User.Email = user.Email;
                             User.IsAuthorizate = true;
                             // Передаём в базу данных текущий IP-адрес
-                            //user.IP = address[0].ToString();
-                            //db.SaveChanges();
+                            user.IP = address[0].ToString();
+                            db.SaveChanges();
                             // Возвращаем результат авторизации
                             return true;
                         }

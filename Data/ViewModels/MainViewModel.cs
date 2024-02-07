@@ -1,4 +1,5 @@
 ﻿using ColorManager.Data.Models;
+using ColorManager.DataBase.Queries;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -47,7 +48,7 @@ namespace ColorManager.Data.ViewModels
 
         private RelayCommand _closeWindow;
         private RelayCommand _resizeWindow;
-        private RelayCommand _hideWindow;   
+        private RelayCommand _hideWindow;
         private RelayCommand _dragWindow;
 
         public RelayCommand CloseWindow
@@ -129,7 +130,14 @@ namespace ColorManager.Data.ViewModels
                     new RelayCommand(obj =>
                     {
                         Frame frame = obj as Frame;
-                        frame.Navigate(new Views.Authorization.SignInPage());
+                        if (AuthorizationQuery.AutoSignIn())
+                        {
+                            frame.Navigate(new Views.HomePage());
+                        }
+                        else
+                        {
+                            frame.Navigate(new Views.Authorization.SignInPage());
+                        }
                     });
             }
         }
@@ -142,7 +150,7 @@ namespace ColorManager.Data.ViewModels
                     new RelayCommand(obj =>
                     {
                         Frame frame = obj as Frame;
-                        
+
                         if (frame.Content is Page currentPage)
                         {
                             string Title = currentPage.Title;
