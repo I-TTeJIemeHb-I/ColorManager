@@ -43,17 +43,15 @@ namespace ColorManager.DataBase.Queries
         /// <summary>
         /// Выполняет автоматизированный вход в профиль
         /// </summary>
-        /// <returns>true при успешном входе в профиль/ false прине нахождении пользователя с указанным IP</returns>
+        /// <returns>true при успешном входе в профиль/ false при не нахождении пользователя с указанным IP</returns>
         public static bool AutoSignIn()
         {
             try
             {
                 using (var db = new ApplicationContext())
                 {
-
                     // Ищет пользователя с полученным IP и возвращает null или экземпляр класса Users
                     var user = db.Users.FirstOrDefault(u => u.IP == AuthorizationQuery.address[0].ToString());
-
 
                     //Если IP у пользователя null просто возвращаем false
                     if(AuthorizationQuery.address[0].ToString() == null) 
@@ -65,7 +63,6 @@ namespace ColorManager.DataBase.Queries
                         User.Login = user.Login;
                         User.Email = user.Email;
                         User.IsAuthorizate = true;
-
                         return true;
                     }
                     // Если пользователь по указанному IP не найден
