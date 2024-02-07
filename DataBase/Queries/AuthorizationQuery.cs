@@ -52,10 +52,14 @@ namespace ColorManager.DataBase.Queries
                 {
 
                     // Ищет пользователя с полученным IP и возвращает null или экземпляр класса Users
-                    var user = db.Users.FirstOrDefault(u => u.IP == address[0].ToString());
+                    var user = db.Users.FirstOrDefault(u => u.IP == AuthorizationQuery.address[0].ToString());
 
+
+                    //Если IP у пользователя null просто возвращаем false
+                    if(AuthorizationQuery.address[0].ToString() == null) 
+                        return false;
                     // Если пользователь по указанному IP найден
-                    if (user != null)
+                    else if (user != null)
                     {
                         MainModel.getInstance().Login = user.Login;
                         User.Login = user.Login;
