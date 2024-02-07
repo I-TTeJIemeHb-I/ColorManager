@@ -33,6 +33,16 @@ namespace ColorManager.DataBase.Queries
             EmailSender.Send("colorbasesender@gmail.com", User.Email, theme, text);
         }
 
+        //public static bool LogOut()
+        //{
+
+        //}
+
+        //public static bool AutoSignIn()
+        //{
+
+        //}
+
 
         /// <summary>
         /// Авторизация пользователя
