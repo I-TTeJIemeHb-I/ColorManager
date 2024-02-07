@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace ColorManager.Data.Views.Setting
+namespace ColorManager.Data.Views.Settings
 {
     /// <summary>
-    /// Логика взаимодействия для SetingPage.xaml
+    /// Логика взаимодействия для SettingsPage.xaml
     /// </summary>
-    public partial class SetingPage : Page
+    public partial class SettingsPage : Page
     {
-        public SetingPage()
+        public SettingsPage()
         {
             InitializeComponent();
         }
