@@ -33,10 +33,42 @@ namespace ColorManager.DataBase.Queries
             EmailSender.Send("colorbasesender@gmail.com", User.Email, theme, text);
         }
 
-        //public static bool LogOut()
-        //{
 
-        //}
+
+        /// <summary>
+        /// Выполняет выход из текущего профиля пользователя
+        /// </summary>
+        /// <returns>true при успешном выходе с аккаунта/ false при не нахождении пользователя с указанным IP </returns>
+        public static bool LogOut()
+        {
+            try
+            {
+                using (var db = new ApplicationContext())
+                {
+                    // Ищет пользователя с полученным IP и возвращает null или экземпляр класса Users
+                    var user = db.Users.FirstOrDefault(u => u.IP == address[0].ToString());
+
+                    if (user != null)
+                    {
+                        // Убираем из базы данных информацию об IP у нашего пользователя
+                        user.IP = null;
+                        User.IsAuthorizate = false;
+                        db.SaveChanges();
+                        return true;
+                    }
+                    else
+                    {
+                        MessageBox.Show("Пользователь с вашим IP адрессом не найден", "Color Manager: Авторизация", MessageBoxButton.OK, MessageBoxImage.Error);
+                        return false;
+                    }
+                }
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Color Manager: Выход из профиля", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+        }
 
 
 
