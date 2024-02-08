@@ -3,7 +3,6 @@ using System;
 using System.Linq;
 using System.Net;
 using System.Windows;
-using System.Windows.Navigation;
 
 namespace ColorManager.DataBase.Queries
 {
@@ -11,7 +10,7 @@ namespace ColorManager.DataBase.Queries
     {
         // IP-адрес
         public static string host = Dns.GetHostName();
-        public static IPAddress[] address = Dns.GetHostAddresses(host);
+        public static IPAddress[]? address = Dns.GetHostAddresses(host);
         // Одноразовый код подтверждения
         public static string securityCode;
 
@@ -52,6 +51,7 @@ namespace ColorManager.DataBase.Queries
                     {
                         // Убираем из базы данных информацию об IP у нашего пользователя
                         user.IP = null;
+                        address = null;
                         User.IsAuthorizate = false;
                         db.SaveChanges();
                         return true;
