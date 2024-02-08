@@ -51,10 +51,10 @@ namespace ColorManager.DataBase.Queries
                 using (var db = new ApplicationContext())
                 {
                     // Ищет пользователя с полученным IP и возвращает null или экземпляр класса Users
-                    var user = db.Users.FirstOrDefault(u => u.IP == AuthorizationQuery.address[0].ToString());
+                    var user = db.Users.FirstOrDefault(u => u.IP == address[0].ToString());
 
                     //Если IP у пользователя null просто возвращаем false
-                    if(AuthorizationQuery.address[0].ToString() == null) 
+                    if(address[0].ToString() == null) 
                         return false;
                     // Если пользователь по указанному IP найден
                     else if (user != null)
@@ -93,8 +93,6 @@ namespace ColorManager.DataBase.Queries
             {
                 using (var db = new ApplicationContext())
                 {
-                    //var users = db.Users;
-
                     // Ищет пользователя с полученным Login и возвращает null или экземпляр класса Users
                     var user = db.Users.FirstOrDefault(u => u.Login == login);
 
@@ -150,10 +148,8 @@ namespace ColorManager.DataBase.Queries
             {
                 using (var db = new ApplicationContext())
                 {
-                    var users = db.Users;
-
                     // Ищет пользователя у котрого Login и Email аналогичны
-                    var user = users.FirstOrDefault(u => u.Login == login || u.Email == email);
+                    var user = db.Users.FirstOrDefault(u => u.Login == login || u.Email == email);
 
                     // Если пользователи найдены
                     // Возможность регистрации - отсутствует
@@ -198,9 +194,7 @@ namespace ColorManager.DataBase.Queries
             {
                 using (var db = new ApplicationContext())
                 {
-                    var users = db.Users;
-
-                    var user = users.FirstOrDefault(u => u.Login == login && u.Email == email);
+                    var user = db.Users.FirstOrDefault(u => u.Login == login && u.Email == email);
 
                     if (user != null)
                     {
