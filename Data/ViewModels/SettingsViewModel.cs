@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
+﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Controls;
 
 namespace ColorManager.Data.ViewModels
 {
-    public class SettingsViewModel: INotifyPropertyChanged
+    public class SettingsViewModel : INotifyPropertyChanged
     {
         #region INotifyPropertyChanged
 
@@ -84,28 +79,39 @@ namespace ColorManager.Data.ViewModels
         #region Kоманды ViewModel
 
 
-        private RelayCommand _gosave;
-        private RelayCommand _back;
+        private RelayCommand _saveData;
+        private RelayCommand _goBack;
+        private RelayCommand _pageLoad;
 
-
-        public RelayCommand GoSave
+        public RelayCommand PageLoaded
         {
             get
             {
-                return _gosave ??=
+                return _pageLoad ??=
                     new RelayCommand(obj =>
                     {
-                        Page page = obj as Page;
-                        page.NavigationService.GoBack();
+                        //Загружать данные с базы на страницу
                     });
             }
         }
 
-        public RelayCommand Back
+        public RelayCommand SaveData
         {
             get
             {
-                return _back ??=
+                return _saveData ??=
+                    new RelayCommand(obj =>
+                    {
+                        //Реализовать функцию сохранения данных 
+                    });
+            }
+        }
+
+        public RelayCommand GoBack
+        {
+            get
+            {
+                return _goBack ??=
                     new RelayCommand(obj =>
                     {
                         Page page = obj as Page;
@@ -115,16 +121,6 @@ namespace ColorManager.Data.ViewModels
         }
 
         #endregion
-
-
-
-
-
-
-
-
-
-
     }
 
 
