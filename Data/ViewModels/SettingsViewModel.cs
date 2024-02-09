@@ -121,7 +121,4 @@ namespace ColorManager.Data.ViewModels
 
         #endregion
     }
-
-
-
 }
