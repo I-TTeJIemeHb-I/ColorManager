@@ -18,7 +18,7 @@ namespace ColorManager.Data.ViewModels
 
         #region Свойства ViewModel
         private string _name;
-        private string _status;
+        private string _jobTitle;
         private string _number;
         private string _email;
 
@@ -37,12 +37,12 @@ namespace ColorManager.Data.ViewModels
 
         public string Status_TextBox
         {
-            get { return _status; }
+            get { return _jobTitle; }
             set
             {
-                if (_status != value)
+                if (_jobTitle != value)
                 {
-                    _status = value;
+                    _jobTitle = value;
                     OnPropertyChanged();
                 }
             }
@@ -77,7 +77,6 @@ namespace ColorManager.Data.ViewModels
         #endregion
 
         #region Kоманды ViewModel
-
 
         private RelayCommand _saveData;
         private RelayCommand _goBack;
