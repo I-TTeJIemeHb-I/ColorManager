@@ -51,14 +51,12 @@ namespace ColorManager.DataBase.Queries
                     {
                         // Убираем из базы данных информацию об IP у нашего пользователя
                         user.IP = null;
-                        address = null;
                         User.IsAuthorizate = false;
                         db.SaveChanges();
                         return true;
                     }
                     else
                     {
-                        MessageBox.Show("Пользователь с вашим IP адрессом не найден", "Color Manager: Авторизация", MessageBoxButton.OK, MessageBoxImage.Error);
                         return false;
                     }
                 }
@@ -100,7 +98,6 @@ namespace ColorManager.DataBase.Queries
                     // Если пользователь по указанному IP не найден
                     else
                     {
-                        MessageBox.Show("Пользователь с вашим IP адрессом не найден", "Color Manager: Авторизация", MessageBoxButton.OK, MessageBoxImage.Error);
                         return false;
                     }
                 }

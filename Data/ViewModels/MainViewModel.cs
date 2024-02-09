@@ -122,6 +122,7 @@ namespace ColorManager.Data.ViewModels
         private RelayCommand _frameLoaded;
         private RelayCommand _navigate;
 
+
         public RelayCommand FrameLoaded
         {
             get
