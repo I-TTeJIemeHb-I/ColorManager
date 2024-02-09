@@ -1,4 +1,5 @@
 ﻿using ColorManager.Data.Models;
+using ColorManager.Data.Views;
 using ColorManager.DataBase.Queries;
 using System;
 using System.Collections.Generic;
@@ -121,6 +122,20 @@ namespace ColorManager.Data.ViewModels
 
         private RelayCommand _frameLoaded;
         private RelayCommand _navigate;
+        private RelayCommand _settings;
+
+        public RelayCommand GoToSettingsPage
+        {
+            get
+            {
+                return _settings ??=
+                    new RelayCommand(obj =>
+                    {
+                        MainWindow window = obj as MainWindow;
+                        window.MainFrame.Navigate(new Views.Settings.SettingsPage());
+                    });
+            }
+        }
 
 
         public RelayCommand FrameLoaded
