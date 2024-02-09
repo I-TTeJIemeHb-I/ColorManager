@@ -32,8 +32,6 @@ namespace ColorManager.DataBase.Queries
             EmailSender.Send("colorbasesender@gmail.com", User.Email, theme, text);
         }
 
-
-
         /// <summary>
         /// Выполняет выход из текущего профиля пользователя
         /// </summary>
@@ -67,8 +65,6 @@ namespace ColorManager.DataBase.Queries
                 return false;
             }
         }
-
-
 
         /// <summary>
         /// Выполняет автоматизированный вход в профиль
@@ -108,7 +104,6 @@ namespace ColorManager.DataBase.Queries
                 return false;
             }
         }
-
 
         /// <summary>
         /// Авторизация пользователя
@@ -163,7 +158,6 @@ namespace ColorManager.DataBase.Queries
             }
         }
 
-
         /// <summary>
         /// Выполняет проверку на возможность регистрации пользователя
         /// </summary>
@@ -209,7 +203,6 @@ namespace ColorManager.DataBase.Queries
             }
         }
 
-
         /// <summary>
         /// Выполняет проверку на возможность восстановления пароля пользователя
         /// </summary>
@@ -250,7 +243,6 @@ namespace ColorManager.DataBase.Queries
             }
         }
 
-
         /// <summary>
         /// Выполняет регистрацию пользователя в приложении
         /// </summary>
@@ -288,7 +280,6 @@ namespace ColorManager.DataBase.Queries
             }
         }
 
-
         /// <summary>
         /// Выполняет Изменение почты пользователя
         /// </summary>
@@ -325,6 +316,5 @@ namespace ColorManager.DataBase.Queries
                 return false;
             }
         }
-
     }
 }
