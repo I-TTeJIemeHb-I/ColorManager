@@ -9,52 +9,89 @@
       Title="SetingPage">
 
     <Grid>
-        <Border Style="{DynamicResource TemplateBorderBase}" Margin="40,38,55,46">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="360"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="700"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Button Grid.Column="0" Grid.Row="1" Width="50" Height="50"
+        HorizontalAlignment="Left"
+        Command="{Binding GoBackPage}"
+        CommandParameter="{Binding ElementName=ThisWindow}"
+        Template="{DynamicResource TemplateNavigationButton}">
+            <Image Source="/Data/Images/back.ico" Width="30"/>
+        </Button>
+
+        <Border Grid.Column="1" Grid.Row="1" Style="{DynamicResource TemplateBorderBase}">
 
 
             <Grid>
 
-                <Button Grid.Column="0" Width="50" Height="50"
-                        HorizontalAlignment="Left" Margin="-92,156,0,158"
-                        Command="{Binding GoBackPage}"
-                        CommandParameter="{Binding ElementName=ThisWindow}"
-                        Template="{DynamicResource TemplateNavigationButton}">
-                    <Image Source="/Data/Images/back.ico" Width="30"/>
-                </Button>
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition Width="120"/>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
 
-                <Label Grid.Row="0" Content="Профиль"
+
+
+                <Label Grid.Column="1" Content="Профиль"
                     FontSize="18" Foreground="Black" FontWeight="Medium"
                     VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,10,0,0" FontFamily="Times New Roman"/>
+
+
+                <Label Grid.Row="1" Content="Информация о пользователе" HorizontalAlignment="Center" VerticalAlignment="Top" Width="284" FontSize="20" FontFamily="Times New Roman"/>
+                <Label Grid.Row="1" Grid.Column="2" Content="Активность" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="20" Width="115" FontFamily="Times New Roman"/>
+                <Label Grid.Row="3" Grid.Column="0" Content="Должность" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="16" FontFamily="Times New Roman" />
+                <Label Grid.Row="4" Grid.Column="0" Content="Телефон" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="16" FontFamily="Times New Roman" Margin="0,8,0,0"/>
+                <Label Grid.Row="5" Grid.Column="0" Content="Почта" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="16" FontFamily="Times New Roman" Margin="3,5,0,0"/>
+                <Label Grid.Row="2" Grid.Column="0" Content="Имя" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="16" FontFamily="Times New Roman" />
+                <Label Grid.Row="2" Grid.Column="2" Content="Расчеты КП" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="16" FontFamily="Times New Roman" Margin="0,6,0,0"/>
+                <Label Grid.Row="3" Grid.Column="2" Content="Изготовление&#xD;&#xA;выкрасов" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="16" FontFamily="Times New Roman"/>
+                <Label Grid.Row="4" Grid.Column="2" Content="Подбор аналогов" HorizontalAlignment="Left" VerticalAlignment="Top" FontFamily="Times New Roman" FontSize="16" Margin="0,5,0,0"/>
+                <Label Grid.Row="5" Grid.Column="1" Content="Запросы рецептов" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="16" FontFamily="Times New Roman" Margin="116,5,0,0" Grid.ColumnSpan="2"/>
+                <TextBox Grid.Row="2" Grid.Column="0" x:Name="Name" Template="{DynamicResource TextBoxTemplateBase}" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Center" Width="173" Height="24" FontSize="14" FontFamily="Times New Roman" Margin="91,0,0,0" />
+                <TextBox Grid.Row="3" Grid.Column="0" x:Name="Status" Template="{DynamicResource TextBoxTemplateBase}" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Center" Width="173" Height="24" FontSize="14" FontFamily="Times New Roman" Margin="91,0,0,0"/>
+                <TextBox Grid.Row="4" Grid.Column="0" x:Name="Number" Template="{DynamicResource TextBoxTemplateBase}" HorizontalAlignment="Left"  TextWrapping="Wrap" VerticalAlignment="Top" Width="173" Height="24" FontSize="14" FontFamily="Times New Roman" Margin="91,10,0,0"/>
+                <TextBox Grid.Row="5" Grid.Column="0" x:Name="Email" Template="{DynamicResource TextBoxTemplateBase}" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Width="173" Height="24" FontSize="14" FontFamily="Times New Roman" Margin="91,7,0,0"/>
+                <TextBox Grid.Row="2" Grid.Column="2" x:Name="Rashet" Template="{DynamicResource TextBoxTemplateBase}" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Width="145" Height="24" FontSize="14" FontFamily="Times New Roman" Margin="134,8,0,0"/>
+                <TextBox Grid.Row="3" Grid.Column="2" x:Name="Izgotovka" Template="{DynamicResource TextBoxTemplateBase}" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Center" Width="145" Height="24" FontSize="14" FontFamily="Times New Roman" Margin="134,0,0,0"/>
+                <TextBox Grid.Row="4" Grid.Column="2" x:Name="Podbor" Template="{DynamicResource TextBoxTemplateBase}" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Width="145" Height="24" FontSize="14" FontFamily="Times New Roman" Margin="134,7,0,0"/>
+                <TextBox Grid.Row="5" Grid.Column="2" x:Name="Zapros" Template="{DynamicResource TextBoxTemplateBase}" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Width="145" Height="24" FontSize="14" FontFamily="Times New Roman" Margin="134,8,0,0"/>
+                <Button Grid.Row="6" Grid.Column="1" Content="Сохранить"  BorderBrush="Black" Foreground="White" Background="Black"  HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" Height="40" Width="108">
+                    <Button.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="9"/>
+                        </Style>
+                    </Button.Resources>
+                </Button>
+
+                <Button Grid.Column="2"
+                        HorizontalAlignment="Left" 
+                        Margin="238,4,0,0" 
+                        VerticalAlignment="Top" Width="41" Height="37">
+                    <Image Source="/Data/Images/ExitAccount.PNG" Stretch="Fill" />
+                </Button>
 
             </Grid>
 
         </Border>
-        <Label Content="Информация о пользователе" HorizontalAlignment="Left" Margin="89,98,0,0" VerticalAlignment="Top" Width="258" FontSize="20" FontFamily="Times New Roman"/>
-        <Label Content="Активность" HorizontalAlignment="Left" Margin="504,98,0,0" VerticalAlignment="Top" FontSize="20" Width="115" FontFamily="Times New Roman"/>
-        <Label Content="Должность" HorizontalAlignment="Left" Margin="89,193,0,0" VerticalAlignment="Top" FontSize="16" FontFamily="Times New Roman"/>
-        <Label Content="Телефон" HorizontalAlignment="Left" Margin="89,229,0,0" VerticalAlignment="Top" FontSize="16" FontFamily="Times New Roman"/>
-        <Label Content="Почта" HorizontalAlignment="Left" Margin="89,265,0,0" VerticalAlignment="Top" FontSize="16" FontFamily="Times New Roman"/>
-        <Label Content="Имя" HorizontalAlignment="Left" Margin="89,157,0,0" VerticalAlignment="Top" FontSize="16" FontFamily="Times New Roman"/>
-        <Label Content="Расчеты КП" HorizontalAlignment="Left" Margin="436,157,0,0" VerticalAlignment="Top" FontSize="16" FontFamily="Times New Roman"/>
-        <Label Content="Изготовление&#xD;&#xA;выкрасов" HorizontalAlignment="Left" Margin="436,187,0,0" VerticalAlignment="Top" FontSize="16" FontFamily="Times New Roman"/>
-        <Label Content="Подбор аналогов" HorizontalAlignment="Left" Margin="436,229,0,0" VerticalAlignment="Top" FontFamily="Times New Roman" FontSize="16"/>
-        <Label Content="Запросы рецептов" HorizontalAlignment="Left" Margin="436,265,0,0" VerticalAlignment="Top" FontSize="16" FontFamily="Times New Roman"/>
-        <TextBox x:Name="Name" Template="{DynamicResource TextBoxTemplateBase}" HorizontalAlignment="Left" Margin="188,161,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="177" Height="24" FontSize="14" FontFamily="Times New Roman"/>
-        <TextBox x:Name="Status" Template="{DynamicResource TextBoxTemplateBase}" HorizontalAlignment="Left" Margin="188,198,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="177" Height="24" FontSize="14" FontFamily="Times New Roman"/>
-        <TextBox x:Name="Number" Template="{DynamicResource TextBoxTemplateBase}" HorizontalAlignment="Left" Margin="188,233,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="177" Height="24" FontSize="14" FontFamily="Times New Roman"/>
-        <TextBox x:Name="Email" Template="{DynamicResource TextBoxTemplateBase}" HorizontalAlignment="Left" Margin="188,269,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="177" Height="24" FontSize="14" FontFamily="Times New Roman"/>
-        <TextBox x:Name="Rashet" Template="{DynamicResource TextBoxTemplateBase}" HorizontalAlignment="Left" Margin="574,161,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="159" Height="24" FontSize="14" FontFamily="Times New Roman"/>
-        <TextBox x:Name="Izgotovka" Template="{DynamicResource TextBoxTemplateBase}" HorizontalAlignment="Left" Margin="574,198,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="159" Height="24" FontSize="14" FontFamily="Times New Roman"/>
-        <TextBox x:Name="Podbor" Template="{DynamicResource TextBoxTemplateBase}" HorizontalAlignment="Left" Margin="574,233,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="159" Height="24" FontSize="14" FontFamily="Times New Roman"/>
-        <TextBox x:Name="Zapros" Template="{DynamicResource TextBoxTemplateBase}" HorizontalAlignment="Left" Margin="574,269,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="159" Height="24" FontSize="14" FontFamily="Times New Roman"/>
-        <Button Content="Сохранить"  BorderBrush="Black" Foreground="White" Background="Black"  HorizontalAlignment="Center" Margin="0,376,0,0" VerticalAlignment="Top" FontSize="20" Height="40" Width="108">
-            <Button.Resources>
-                <Style TargetType="Border">
-                    <Setter Property="CornerRadius" Value="9"/>
-                </Style>
-            </Button.Resources>
-        </Button>
-        <Image Margin="703,53,67,367" Source="/Data/Images/ExitAccount.PNG" Stretch="Fill"/>
+
 
     </Grid>
 </Page>
