@@ -1,4 +1,6 @@
-﻿using ColorManager.DataBase.Queries;
+﻿using ColorManager.Data.Models;
+using ColorManager.DataBase;
+using ColorManager.DataBase.Queries;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows.Controls;
@@ -90,7 +92,11 @@ namespace ColorManager.Data.ViewModels
                 return _pageLoad ??=
                     new RelayCommand(obj =>
                     {
-                        //Загружать данные с базы на страницу
+                        Users user = SettingsQuery.LoadData();
+                        _name = user.Name;
+                        _jobTitle = user.JobTitle;
+                        _number = user.PhoneNumber;
+                        _email = user.Email;
                     });
             }
         }
