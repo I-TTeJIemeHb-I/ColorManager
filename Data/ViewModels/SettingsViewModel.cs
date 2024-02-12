@@ -84,6 +84,10 @@ namespace ColorManager.Data.ViewModels
         private RelayCommand _saveData;
         private RelayCommand _goBack;
         private RelayCommand _pageLoad;
+        private RelayCommand _rashet;
+        private RelayCommand _izgotovka;
+        private RelayCommand _podbor;
+        private RelayCommand _zapros;
 
         public RelayCommand PageLoaded
         {
@@ -141,6 +145,74 @@ namespace ColorManager.Data.ViewModels
                     });
             }
         }
+
+        public RelayCommand Rashet
+        {
+            get
+            {
+                return _pageLoad ??=
+                    new RelayCommand(obj =>
+                    {
+                        Users user = SettingsQuery.LoadData();
+                        _name = user.Name;
+                        _jobTitle = user.JobTitle;
+                        _number = user.PhoneNumber;
+                        _email = user.Email;
+                    });
+            }
+        }
+
+
+        public RelayCommand Izgotovka
+        {
+            get
+            {
+                return _pageLoad ??=
+                    new RelayCommand(obj =>
+                    {
+                        Users user = SettingsQuery.LoadData();
+                        _name = user.Name;
+                        _jobTitle = user.JobTitle;
+                        _number = user.PhoneNumber;
+                        _email = user.Email;
+                    });
+            }
+        }
+
+        public RelayCommand Podbor
+        {
+            get
+            {
+                return _pageLoad ??=
+                    new RelayCommand(obj =>
+                    {
+                        Users user = SettingsQuery.LoadData();
+                        _name = user.Name;
+                        _jobTitle = user.JobTitle;
+                        _number = user.PhoneNumber;
+                        _email = user.Email;
+                    });
+            }
+        }
+
+        public RelayCommand Zapros
+        {
+            get
+            {
+                return _pageLoad ??=
+                    new RelayCommand(obj =>
+                    {
+                        Users user = SettingsQuery.LoadData();
+                        _name = user.Name;
+                        _jobTitle = user.JobTitle;
+                        _number = user.PhoneNumber;
+                        _email = user.Email;
+                    });
+            }
+        }
+
+
+
 
         #endregion
     }
