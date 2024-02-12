@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:ColorManager.Data.Views.Settings"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="450" d:DesignWidth="800" x:Name="ThisWindow"
       Title="SetingPage">
 
     <Grid>
@@ -22,7 +22,7 @@
 
         <Button Grid.Column="0" Grid.Row="1" Width="50" Height="50"
         HorizontalAlignment="Left"
-        Command="{Binding GoBackPage}"
+        Command="{Binding GoBack}"
         CommandParameter="{Binding ElementName=ThisWindow}"
         Template="{DynamicResource TemplateNavigationButton}">
             <Image Source="/Data/Images/back.ico" Width="30"/>

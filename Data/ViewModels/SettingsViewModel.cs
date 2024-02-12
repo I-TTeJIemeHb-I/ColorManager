@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using ColorManager.DataBase.Queries;
+using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows.Controls;
 
@@ -90,6 +91,22 @@ namespace ColorManager.Data.ViewModels
                     new RelayCommand(obj =>
                     {
                         //Загружать данные с базы на страницу
+                    });
+            }
+        }
+
+        public RelayCommand LogOut
+        {
+            get
+            {
+                return _pageLoad ??=
+                    new RelayCommand(obj =>
+                    {
+                        if (AuthorizationQuery.LogOut())
+                        {
+                            Frame frame = obj as Frame;
+                            frame.Navigate(new Views.HomePage());
+                        }
                     });
             }
         }
