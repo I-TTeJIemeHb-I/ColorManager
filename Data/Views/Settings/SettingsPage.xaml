@@ -3,12 +3,19 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
       xmlns:local="clr-namespace:ColorManager.Data.Views.Settings"
+      xmlns:vm="clr-namespace:ColorManager.Data.ViewModels"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800" x:Name="ThisWindow"
       Title="SetingPage">
 
+    <Page.DataContext>
+        <vm:SettingsViewModel/>
+    </Page.DataContext>
+
     <Grid>
+
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
             <RowDefinition Height="360"/>
@@ -20,17 +27,20 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <Button Grid.Column="0" Grid.Row="1" Width="50" Height="50"
-        HorizontalAlignment="Left"
-        Command="{Binding GoBack}"
-        CommandParameter="{Binding ElementName=ThisWindow}"
-        Template="{DynamicResource TemplateNavigationButton}">
+        <i:Interaction.Triggers>
+            <i:EventTrigger EventName="Loaded">
+                <i:InvokeCommandAction
+                 Command="{Binding PageLoaded}"
+                 CommandParameter="{Binding ElementName=MainFrame}"/>
+            </i:EventTrigger>
+        </i:Interaction.Triggers>
+
+        <Button Grid.Column="0" Grid.Row="1" Width="50" Height="50" HorizontalAlignment="Left" Command="{Binding GoBack}" 
+                CommandParameter="{Binding ElementName=ThisWindow}" Template="{DynamicResource TemplateNavigationButton}">
             <Image Source="/Data/Images/back.ico" Width="30"/>
         </Button>
 
         <Border Grid.Column="1" Grid.Row="1" Style="{DynamicResource TemplateBorderBase}">
-
-
             <Grid>
 
                 <Grid.RowDefinitions>
@@ -48,8 +58,6 @@
                     <ColumnDefinition></ColumnDefinition>
                 </Grid.ColumnDefinitions>
 
-
-
                 <Label Grid.Column="1" Content="Профиль"
                     FontSize="18" Foreground="Black" FontWeight="Medium"
                     VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,10,0,0" FontFamily="Times New Roman"/>
@@ -65,15 +73,15 @@
                 <Label Grid.Row="3" Grid.Column="2" Content="Изготовление&#xD;&#xA;выкрасов" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="16" FontFamily="Times New Roman"/>
                 <Label Grid.Row="4" Grid.Column="2" Content="Подбор аналогов" HorizontalAlignment="Left" VerticalAlignment="Top" FontFamily="Times New Roman" FontSize="16" Margin="0,5,0,0"/>
                 <Label Grid.Row="5" Grid.Column="1" Content="Запросы рецептов" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="16" FontFamily="Times New Roman" Margin="116,5,0,0" Grid.ColumnSpan="2"/>
-                <TextBox Grid.Row="2" Grid.Column="0" x:Name="Name" Template="{DynamicResource TextBoxTemplateBase}" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Center" Width="173" Height="29" FontSize="14" FontFamily="Times New Roman" Margin="91,0,0,0" />
-                <TextBox Grid.Row="3" Grid.Column="0" x:Name="Status" Template="{DynamicResource TextBoxTemplateBase}" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Center" Width="173" Height="29" FontSize="14" FontFamily="Times New Roman" Margin="91,0,0,0"/>
-                <TextBox Grid.Row="4" Grid.Column="0" x:Name="Number" Template="{DynamicResource TextBoxTemplateBase}" HorizontalAlignment="Left"  TextWrapping="Wrap" VerticalAlignment="Top" Width="173" Height="29" FontSize="14" FontFamily="Times New Roman" Margin="91,10,0,0"/>
-                <TextBox Grid.Row="5" Grid.Column="0" x:Name="Email" Template="{DynamicResource TextBoxTemplateBase}" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Width="173" Height="29" FontSize="14" FontFamily="Times New Roman" Margin="91,7,0,0"/>
+                <TextBox Grid.Row="2" Grid.Column="0" x:Name="Name" Template="{DynamicResource TextBoxTemplateBase}" Text="{Binding SettingsModel.Name}" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Center" Width="173" Height="29" FontSize="14" FontFamily="Times New Roman" Margin="91,0,0,0" />
+                <TextBox Grid.Row="3" Grid.Column="0" x:Name="Status" Template="{DynamicResource TextBoxTemplateBase}" Text="{Binding SettingsModel.JobTitle}" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Center" Width="173" Height="29" FontSize="14" FontFamily="Times New Roman" Margin="91,0,0,0"/>
+                <TextBox Grid.Row="4" Grid.Column="0" x:Name="Number" Template="{DynamicResource TextBoxTemplateBase}" Text="{Binding SettingsModel.Number}" HorizontalAlignment="Left"  TextWrapping="Wrap" VerticalAlignment="Top" Width="173" Height="29" FontSize="14" FontFamily="Times New Roman" Margin="91,10,0,0"/>
+                <TextBox Grid.Row="5" Grid.Column="0" x:Name="Email" Template="{DynamicResource TextBoxTemplateBase}" Text="{Binding SettingsModel.Email}" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Width="173" Height="29" FontSize="14" FontFamily="Times New Roman" Margin="91,7,0,0"/>
                 <TextBox Grid.Row="2" Grid.Column="2" x:Name="Rashet" Template="{DynamicResource TextBoxTemplateBase}" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Width="145" Height="29" FontSize="14" FontFamily="Times New Roman" Margin="134,8,0,0"/>
                 <TextBox Grid.Row="3" Grid.Column="2" x:Name="Izgotovka" Template="{DynamicResource TextBoxTemplateBase}" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Center" Width="145" Height="29" FontSize="14" FontFamily="Times New Roman" Margin="134,0,0,0"/>
                 <TextBox Grid.Row="4" Grid.Column="2" x:Name="Podbor" Template="{DynamicResource TextBoxTemplateBase}" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Width="145" Height="29" FontSize="14" FontFamily="Times New Roman" Margin="134,7,0,0"/>
                 <TextBox Grid.Row="5" Grid.Column="2" x:Name="Zapros" Template="{DynamicResource TextBoxTemplateBase}" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Width="145" Height="29" FontSize="14" FontFamily="Times New Roman" Margin="134,8,0,0"/>
-                <Button Grid.Row="6" Grid.Column="1" Content="Сохранить"  BorderBrush="Black" Foreground="White" Background="Black"  HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" Height="40" Width="108">
+                <Button Grid.Row="6" Grid.Column="1" Content="Сохранить" Command="{Binding SaveData}" BorderBrush="Black" Foreground="White" Background="Black"  HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" Height="40" Width="108">
                     <Button.Resources>
                         <Style TargetType="Border">
                             <Setter Property="CornerRadius" Value="9"/>

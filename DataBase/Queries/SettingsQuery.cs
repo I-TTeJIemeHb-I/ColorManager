@@ -10,7 +10,13 @@ namespace ColorManager.DataBase.Queries
 {
     public class SettingsQuery
     {
-        public static Users LoadData()
+
+
+        /// <summary>
+        /// Получение данных пользователя
+        /// </summary>
+        /// <returns>Возвращает пользователя</returns>
+        public static Users GetUserInfo()
         {
             try
             {
@@ -35,19 +41,41 @@ namespace ColorManager.DataBase.Queries
             }
         }
 
-        //public static string[] SaveData(string[] array)
-        //{
-        //    try
-        //    {
-        //        using (var db = new ApplicationContext())
-        //        {
 
-            //        }
-            //    }
-            //    catch(Exception e)
-            //    {
-            //        MessageBox.Show(e.Message,"ColorsManager: Профиль",MessageBoxButton.OK,MessageBoxImage.Error);
-            //    }
-            //}
+        /// <summary>
+        /// Сохранение измененных данных
+        /// </summary>
+        /// <param name="name">Имя пользователя</param>
+        /// <param name="jobTitle">Статус пользователя</param>
+        /// <param name="number">Номер телефона пользователя</param>
+        /// <param name="email">Электронная почта пользователя</param>
+        public static void SaveData(SettingsModel model)
+        {
+            try
+            {
+                using (var db = new ApplicationContext())
+                {
+                    var user = db.Users.FirstOrDefault(u => u.IP == AuthorizationQuery.address[0].ToString());
+
+                    if (user != null)
+                    {
+                        user.Name = model.Name;
+                        user.JobTitle = model.Status;
+                        user.PhoneNumber = model.Number;
+                        user.Email = model.Email;
+                        db.SaveChanges();
+                    }
+                    else
+                    {
+                        return;
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message, "ColorsManager: Профиль", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+        }
     }
 }

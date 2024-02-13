@@ -3,6 +3,8 @@ using ColorManager.DataBase;
 using ColorManager.DataBase.Queries;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Security.Cryptography.X509Certificates;
+using System.Windows;
 using System.Windows.Controls;
 
 namespace ColorManager.Data.ViewModels
@@ -19,7 +21,15 @@ namespace ColorManager.Data.ViewModels
 
         #endregion
 
+        SettingsModel Model { get; set; }
+
+        public SettingsViewModel()
+        {
+           Model = new SettingsModel();
+        }
+
         #region Свойства ViewModel
+
         private string _name;
         private string _jobTitle;
         private string _number;
@@ -32,6 +42,7 @@ namespace ColorManager.Data.ViewModels
             {
                 if (_name != value)
                 {
+                    MessageBox.Show("");
                     _name = value;
                     OnPropertyChanged();
                 }
@@ -84,6 +95,7 @@ namespace ColorManager.Data.ViewModels
         private RelayCommand _saveData;
         private RelayCommand _goBack;
         private RelayCommand _pageLoad;
+        private RelayCommand _logOut;
         private RelayCommand _rashet;
         private RelayCommand _izgotovka;
         private RelayCommand _podbor;
@@ -96,11 +108,14 @@ namespace ColorManager.Data.ViewModels
                 return _pageLoad ??=
                     new RelayCommand(obj =>
                     {
-                        Users user = SettingsQuery.LoadData();
-                        _name = user.Name;
-                        _jobTitle = user.JobTitle;
-                        _number = user.PhoneNumber;
-                        _email = user.Email;
+                        using (var db = new ApplicationContext())
+                        {
+                            Users user = SettingsQuery.GetUserInfo();
+                            Model.Name = user.Name;
+                            Model.Status = user.JobTitle;
+                            Model.Number = user.PhoneNumber;
+                            Model.Email = user.Email;
+                        }
                     });
             }
         }
@@ -109,7 +124,7 @@ namespace ColorManager.Data.ViewModels
         {
             get
             {
-                return _pageLoad ??=
+                return _logOut ??=
                     new RelayCommand(obj =>
                     {
                         if (AuthorizationQuery.LogOut())
@@ -128,7 +143,9 @@ namespace ColorManager.Data.ViewModels
                 return _saveData ??=
                     new RelayCommand(obj =>
                     {
-                        //Реализовать функцию сохранения данных 
+                        //Реализовать функцию сохранения данных
+                        MessageBox.Show(Model.Name);
+                        SettingsQuery.SaveData(Model);
                     });
             }
         }
@@ -153,11 +170,7 @@ namespace ColorManager.Data.ViewModels
                 return _pageLoad ??=
                     new RelayCommand(obj =>
                     {
-                        Users user = SettingsQuery.LoadData();
-                        _name = user.Name;
-                        _jobTitle = user.JobTitle;
-                        _number = user.PhoneNumber;
-                        _email = user.Email;
+                       
                     });
             }
         }
@@ -170,11 +183,7 @@ namespace ColorManager.Data.ViewModels
                 return _pageLoad ??=
                     new RelayCommand(obj =>
                     {
-                        Users user = SettingsQuery.LoadData();
-                        _name = user.Name;
-                        _jobTitle = user.JobTitle;
-                        _number = user.PhoneNumber;
-                        _email = user.Email;
+                       
                     });
             }
         }
@@ -186,11 +195,7 @@ namespace ColorManager.Data.ViewModels
                 return _pageLoad ??=
                     new RelayCommand(obj =>
                     {
-                        Users user = SettingsQuery.LoadData();
-                        _name = user.Name;
-                        _jobTitle = user.JobTitle;
-                        _number = user.PhoneNumber;
-                        _email = user.Email;
+                       
                     });
             }
         }
@@ -202,11 +207,7 @@ namespace ColorManager.Data.ViewModels
                 return _pageLoad ??=
                     new RelayCommand(obj =>
                     {
-                        Users user = SettingsQuery.LoadData();
-                        _name = user.Name;
-                        _jobTitle = user.JobTitle;
-                        _number = user.PhoneNumber;
-                        _email = user.Email;
+                       
                     });
             }
         }
