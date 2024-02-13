@@ -148,7 +148,7 @@ namespace ColorManager.Data.ViewModels
                         Frame frame = obj as Frame;
                         if (AuthorizationQuery.AutoSignIn())
                         {
-                            frame.Navigate(new HomePage());
+                            frame.Navigate(new SignInPage());
                         }
                         else
                         {

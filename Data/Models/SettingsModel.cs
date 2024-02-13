@@ -37,7 +37,6 @@ namespace ColorManager.Data.Models
             {
                 if (_name != value)
                 {
-                    MessageBox.Show("лох");
                     _name = value;
                     OnPropertyChanged();
                 }

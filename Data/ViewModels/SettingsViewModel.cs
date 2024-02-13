@@ -28,67 +28,67 @@ namespace ColorManager.Data.ViewModels
            Model = new SettingsModel();
         }
 
-        #region Свойства ViewModel
+        //#region Свойства ViewModel
 
-        private string _name;
-        private string _jobTitle;
-        private string _number;
-        private string _email;
+        //private string _name;
+        //private string _jobTitle;
+        //private string _number;
+        //private string _email;
 
-        public string Name_TextBox
-        {
-            get { return _name; }
-            set
-            {
-                if (_name != value)
-                {
-                    MessageBox.Show("");
-                    _name = value;
-                    OnPropertyChanged();
-                }
-            }
-        }
+        //public string Name_TextBox
+        //{
+        //    get { return _name; }
+        //    set
+        //    {
+        //        if (_name != value)
+        //        {
+        //            MessageBox.Show("");
+        //            _name = value;
+        //            OnPropertyChanged();
+        //        }
+        //    }
+        //}
 
-        public string Status_TextBox
-        {
-            get { return _jobTitle; }
-            set
-            {
-                if (_jobTitle != value)
-                {
-                    _jobTitle = value;
-                    OnPropertyChanged();
-                }
-            }
-        }
+        //public string Status_TextBox
+        //{
+        //    get { return _jobTitle; }
+        //    set
+        //    {
+        //        if (_jobTitle != value)
+        //        {
+        //            _jobTitle = value;
+        //            OnPropertyChanged();
+        //        }
+        //    }
+        //}
 
-        public string Number_TextBox
-        {
-            get { return _email; }
-            set
-            {
-                if (_number != value)
-                {
-                    _number = value;
-                    OnPropertyChanged();
-                }
-            }
-        }
+        //public string Number_TextBox
+        //{
+        //    get { return _email; }
+        //    set
+        //    {
+        //        if (_number != value)
+        //        {
+        //            _number = value;
+        //            OnPropertyChanged();
+        //        }
+        //    }
+        //}
 
-        public string Email_TextBox
-        {
-            get { return _email; }
-            set
-            {
-                if (_email != value)
-                {
-                    _email = value;
-                    OnPropertyChanged();
-                }
-            }
-        }
+        //public string Email_TextBox
+        //{
+        //    get { return _email; }
+        //    set
+        //    {
+        //        if (_email != value)
+        //        {
+        //            _email = value;
+        //            OnPropertyChanged();
+        //        }
+        //    }
+        //}
 
-        #endregion
+        //#endregion
 
         #region Kоманды ViewModel
 
@@ -108,14 +108,11 @@ namespace ColorManager.Data.ViewModels
                 return _pageLoad ??=
                     new RelayCommand(obj =>
                     {
-                        using (var db = new ApplicationContext())
-                        {
                             Users user = SettingsQuery.GetUserInfo();
-                            Model.Name = user.Name;
+                            Model.Name = user.IP;
                             Model.Status = user.JobTitle;
                             Model.Number = user.PhoneNumber;
                             Model.Email = user.Email;
-                        }
                     });
             }
         }
@@ -130,7 +127,7 @@ namespace ColorManager.Data.ViewModels
                         if (AuthorizationQuery.LogOut())
                         {
                             Frame frame = obj as Frame;
-                            frame.Navigate(new Views.HomePage());
+                            frame.Navigate(new Views.SignInPage());
                         }
                     });
             }
