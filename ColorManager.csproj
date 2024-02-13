@@ -11,11 +11,13 @@
   <ItemGroup>
     <None Remove="Data\Images\back.ico" />
     <None Remove="Data\Images\close_window.png" />
+    <None Remove="Data\Images\ExitAccount.PNG" />
     <None Remove="Data\Images\full_window.png" />
     <None Remove="Data\Images\hide_window.png" />
     <None Remove="Data\Images\next.ico" />
     <None Remove="Data\Images\next_white.png" />
     <None Remove="Data\Images\settings.svg" />
+    <None Remove="Data\Images\Stas.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -33,6 +35,9 @@
     <Resource Include="Data\Images\close_window.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="Data\Images\ExitAccount.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Data\Images\full_window.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
@@ -46,6 +51,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Data\Images\settings.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Data\Images\Stas.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
   </ItemGroup>
