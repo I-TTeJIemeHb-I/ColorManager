@@ -93,7 +93,7 @@
                         HorizontalAlignment="Left" 
                         Margin="238,4,0,0" 
                         VerticalAlignment="Top" Width="41" Height="37">
-                    <Image Source="\Data\Images\ExitAccount.png" Stretch="Fill" />
+                    <Image Source="/Data/Images/ExitAccount.PNG" Stretch="Fill" />
                 </Button>
 
             </Grid>
