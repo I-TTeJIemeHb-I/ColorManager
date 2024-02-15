@@ -47,8 +47,9 @@
         <ListView Margin="10,57,10,10" Grid.Row="1" Grid.Column="1" FontSize="20" FontFamily="Times New Roman" >
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Width="350">Название станции"</GridViewColumn>
-                    <GridViewColumn Width="350">Дата обновлений</GridViewColumn>
+                    <GridViewColumn Width="70">Номер</GridViewColumn>
+                    <GridViewColumn Width="260">Название станции</GridViewColumn>
+                    <GridViewColumn Width="260">Дата обновлений</GridViewColumn>
                 </GridView>
             </ListView.View>
             <ListView.Resources>
