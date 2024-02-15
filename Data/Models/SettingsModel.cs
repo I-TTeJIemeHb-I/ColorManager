@@ -58,7 +58,7 @@ namespace ColorManager.Data.Models
 
         public string Number
         {
-            get { return _email; }
+            get { return _number; }
             set
             {
                 if (_number != value)

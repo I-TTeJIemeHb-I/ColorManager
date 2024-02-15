@@ -16,7 +16,7 @@ namespace ColorManager.DataBase.Queries
         /// Получение данных пользователя
         /// </summary>
         /// <returns>Возвращает пользователя</returns>
-        public static Users GetUserInfo()
+        public static async Task GetUserInfo(SettingsModel model)
         {
             try
             {
@@ -26,18 +26,16 @@ namespace ColorManager.DataBase.Queries
 
                     if (user != null)
                     {
-                        return user;
-                    }
-                    else
-                    {
-                        return null;
+                        model.Name = user.Name;
+                        model.Status = user.JobTitle;
+                        model.Number = user.PhoneNumber;
+                        model.Email = user.Email;
                     }
                 }
             }
             catch (Exception e)
             {
                 MessageBox.Show(e.Message, "ColorsManager: Профиль", MessageBoxButton.OK, MessageBoxImage.Error);
-                return null;
             }
         }
 

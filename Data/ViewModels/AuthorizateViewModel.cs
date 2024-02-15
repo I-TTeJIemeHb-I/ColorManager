@@ -111,7 +111,7 @@ namespace ColorManager.Data.ViewModels
                         if (AuthorizationQuery.SignIn(Login_TextBox, Password_TextBox))
                         {
                             Page page = obj as Page;
-                            page.NavigationService.Navigate(new Views.SignInPage());
+                            page.NavigationService.Navigate(new Views.HomePage());
                         }
                     }, 
                     obj =>

@@ -2,9 +2,9 @@
 
 namespace ColorManager.Data.Views
 {
-    public partial class SignInPage : Page
+    public partial class HomePage : Page
     {
-        public SignInPage()
+        public HomePage()
         {
             InitializeComponent();
         }

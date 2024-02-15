@@ -73,10 +73,10 @@
                 <Label Grid.Row="3" Grid.Column="2" Content="Изготовление&#xD;&#xA;выкрасов" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="16" FontFamily="Times New Roman"/>
                 <Label Grid.Row="4" Grid.Column="2" Content="Подбор аналогов" HorizontalAlignment="Left" VerticalAlignment="Top" FontFamily="Times New Roman" FontSize="16" Margin="0,5,0,0"/>
                 <Label Grid.Row="5" Grid.Column="1" Content="Запросы рецептов" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="16" FontFamily="Times New Roman" Margin="116,5,0,0" Grid.ColumnSpan="2"/>
-                <TextBox Grid.Row="2" Grid.Column="0" x:Name="Name" Template="{DynamicResource TextBoxTemplateBase}" Text="{Binding SettingsModel.Name}" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Center" Width="173" Height="29" FontSize="14" FontFamily="Times New Roman" Margin="91,0,0,0" />
-                <TextBox Grid.Row="3" Grid.Column="0" x:Name="Status" Template="{DynamicResource TextBoxTemplateBase}" Text="{Binding SettingsModel.JobTitle}" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Center" Width="173" Height="29" FontSize="14" FontFamily="Times New Roman" Margin="91,0,0,0"/>
-                <TextBox Grid.Row="4" Grid.Column="0" x:Name="Number" Template="{DynamicResource TextBoxTemplateBase}" Text="{Binding SettingsModel.Number}" HorizontalAlignment="Left"  TextWrapping="Wrap" VerticalAlignment="Top" Width="173" Height="29" FontSize="14" FontFamily="Times New Roman" Margin="91,10,0,0"/>
-                <TextBox Grid.Row="5" Grid.Column="0" x:Name="Email" Template="{DynamicResource TextBoxTemplateBase}" Text="{Binding SettingsModel.Email}" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Width="173" Height="29" FontSize="14" FontFamily="Times New Roman" Margin="91,7,0,0"/>
+                <TextBox Grid.Row="2" Grid.Column="0" x:Name="Name" Template="{DynamicResource TextBoxTemplateBase}" Text="{Binding Model.Name}" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Center" Width="173" Height="29" FontSize="14" FontFamily="Times New Roman" Margin="91,0,0,0" />
+                <TextBox Grid.Row="3" Grid.Column="0" x:Name="Status" Template="{DynamicResource TextBoxTemplateBase}" Text="{Binding Model.Status}" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Center" Width="173" Height="29" FontSize="14" FontFamily="Times New Roman" Margin="91,0,0,0"/>
+                <TextBox Grid.Row="4" Grid.Column="0" x:Name="Number" Template="{DynamicResource TextBoxTemplateBase}" Text="{Binding Model.Number}" HorizontalAlignment="Left"  TextWrapping="Wrap" VerticalAlignment="Top" Width="173" Height="29" FontSize="14" FontFamily="Times New Roman" Margin="91,10,0,0"/>
+                <TextBox Grid.Row="5" Grid.Column="0" x:Name="Email" Template="{DynamicResource TextBoxTemplateBase}" Text="{Binding Model.Email}" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Width="173" Height="29" FontSize="14" FontFamily="Times New Roman" Margin="91,7,0,0"/>
                 <TextBox Grid.Row="2" Grid.Column="2" x:Name="Rashet" Template="{DynamicResource TextBoxTemplateBase}" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Width="145" Height="29" FontSize="14" FontFamily="Times New Roman" Margin="134,8,0,0"/>
                 <TextBox Grid.Row="3" Grid.Column="2" x:Name="Izgotovka" Template="{DynamicResource TextBoxTemplateBase}" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Center" Width="145" Height="29" FontSize="14" FontFamily="Times New Roman" Margin="134,0,0,0"/>
                 <TextBox Grid.Row="4" Grid.Column="2" x:Name="Podbor" Template="{DynamicResource TextBoxTemplateBase}" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Width="145" Height="29" FontSize="14" FontFamily="Times New Roman" Margin="134,7,0,0"/>
@@ -92,7 +92,7 @@
                 <Button Grid.Column="2"
                         HorizontalAlignment="Left" 
                         Margin="238,4,0,0" 
-                        VerticalAlignment="Top" Width="41" Height="37" Command="{Binding LogOut}">
+                        VerticalAlignment="Top" Width="41" Height="37" Command="{Binding LogOut}" CommandParameter="{Binding ElementName=ThisWindow}">
                     <Image Source="/Data/Images/ExitAccount.png" Stretch="Fill" />
                 </Button>
 
