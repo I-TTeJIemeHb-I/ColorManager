@@ -35,8 +35,8 @@
             </i:EventTrigger>
         </i:Interaction.Triggers>
 
-        <Button Grid.Column="0" Grid.Row="1" Width="50" Height="50" HorizontalAlignment="Left" Command="{Binding GoBack}" 
-                CommandParameter="{Binding ElementName=ThisWindow}" Template="{DynamicResource TemplateNavigationButton}">
+        <Button Grid.Column="0" Grid.Row="1" Height="50" Command="{Binding GoBack}" 
+                CommandParameter="{Binding ElementName=ThisWindow}" Template="{DynamicResource TemplateNavigationButton}" Margin="0,10,0,0" HorizontalAlignment="Right" Width="50">
             <Image Source="/Data/Images/back.ico" Width="30"/>
         </Button>
 
