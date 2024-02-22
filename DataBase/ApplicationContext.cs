@@ -1,4 +1,5 @@
-﻿using ColorManager.Properties;
+﻿using ColorManager.DataBase.Tables;
+using ColorManager.Properties;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -11,6 +12,7 @@ namespace ColorManager.DataBase
     public class ApplicationContext : DbContext
     {
         public DbSet<Users> Users { get; set; } = null!;
+        public DbSet<Palletters> Palletters { get; set; } = null!;
 
         public ApplicationContext()
         {

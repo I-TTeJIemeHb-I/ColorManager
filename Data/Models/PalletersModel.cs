@@ -9,7 +9,7 @@ using System.Windows.Media;
 
 namespace ColorManager.Data.Models
 {
-    public class CalculatorModel
+    public class PalletersModel
     {
         public static string? NameProduct;
         public static string? FanOfColor;
@@ -19,7 +19,7 @@ namespace ColorManager.Data.Models
         public static string? Name_FanOfColor_Color;
 
 
-        public CalculatorModel(string name, string fanOfColor,SolidColorBrush color)
+        public PalletersModel(string name, string fanOfColor,SolidColorBrush color)
         {
             NameProduct = name;
             FanOfColor = fanOfColor;
