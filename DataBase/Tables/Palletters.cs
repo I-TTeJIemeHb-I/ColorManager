@@ -23,7 +23,7 @@ namespace ColorManager.DataBase.Tables
 
         public string? ColorValue { get; set; }
 
-        [NotNull]
+        [NotNull, DefaultValue(false)]
         public bool InStock { get; set; }
 
 

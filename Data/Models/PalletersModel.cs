@@ -11,21 +11,24 @@ namespace ColorManager.Data.Models
 {
     public class PalletersModel
     {
-        public static string? NameProduct;
-        public static string? FanOfColor;
-        public static SolidColorBrush? Color;
-        public static bool? Availability;
-        public static string? ColorSpectrum;
-        public static string? Name_FanOfColor_Color;
+        public string ProductGroup;
+        public string ColorFan;
+        public string Color;
+        public string LongName;
+        public static SolidColorBrush? ColorValue;
+        public static bool Availability;
 
 
-        public PalletersModel(string name, string fanOfColor,SolidColorBrush color)
+        public PalletersModel(string productGroup, string colorFan, string color, string hex, bool availability)
         {
-            NameProduct = name;
-            FanOfColor = fanOfColor;
+            ProductGroup = productGroup;
+            ColorFan = colorFan;
             Color = color;
+            LongName = $"{productGroup}, {colorFan}, {color}";
+            Availability = availability;
 
-            Name_FanOfColor_Color = $"{NameProduct}, {FanOfColor}, {Color}";
+            // Здесь должна быть конверташка из HEX в SolidColorBrush
+            ColorValue = new SolidColorBrush(System.Windows.Media.Color.FromRgb(100, 0, 100));
         }
        
     }
