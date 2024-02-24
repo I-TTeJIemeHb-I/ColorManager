@@ -28,7 +28,8 @@ namespace ColorManager.Data.Models
             Availability = availability;
 
             // Здесь должна быть конверташка из HEX в SolidColorBrush
-            ColorValue = new SolidColorBrush(System.Windows.Media.Color.FromRgb(100, 0, 100));
+            //ColorValue = new SolidColorBrush(System.Windows.Media.Color.FromRgb(100, 0, 100));
+            ColorValue = new BrushConverter().ConvertFrom(hex) as SolidColorBrush;
         }
        
     }
