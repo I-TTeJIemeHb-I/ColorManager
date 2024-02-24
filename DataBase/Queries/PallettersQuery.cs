@@ -13,7 +13,7 @@ namespace ColorManager.DataBase.Queries
 
 
         /// <summary>
-        /// Вытягивает все элементы таблицы Palletters
+        /// Возвращает все элементы таблицы Palletters
         /// </summary>
         /// <returns>palletters при успешном поиске эелементов/null при не нахождении эелементов</returns>
         public List<Palletters> GetAll()
