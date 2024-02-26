@@ -11,16 +11,15 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition MinHeight="10" MaxHeight="70"/>
-            <RowDefinition MinHeight="260" MaxHeight="660"/>
+            <RowDefinition MinHeight="660" MaxHeight="960"/>
             <RowDefinition MinHeight="10" MaxHeight="70"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition MinWidth="10" MaxWidth="120"/>
-            <ColumnDefinition MinWidth="300" MaxWidth="520"/>
+            <ColumnDefinition MinWidth="60" MaxWidth="120"/>
+            <ColumnDefinition MinWidth="450" MaxWidth="520"/>
             <ColumnDefinition MinWidth="10" MaxWidth="160"/>
-            <ColumnDefinition MinWidth="240" MaxWidth="640"/>
-            <ColumnDefinition MinWidth="160" MaxWidth="360"/>
-            <ColumnDefinition MinWidth="10" MaxWidth="120"/>
+            <ColumnDefinition MinWidth="540" MaxWidth="900"/>
+            <ColumnDefinition MinWidth="10" MaxWidth="122"/>
         </Grid.ColumnDefinitions>
 
         <Button Grid.Column="0" Grid.Row="1" Width="50" HorizontalAlignment="Right" Command="{Binding GoBack}" 
@@ -46,7 +45,7 @@
                     <ColumnDefinition></ColumnDefinition>
                 </Grid.ColumnDefinitions>
 
-                <Label Content="Выбор цвета" HorizontalAlignment="Left" Margin="194,0,0,0" VerticalAlignment="Center" Grid.Column="0" Grid.ColumnSpan="2" FontSize="20" Height="34" Width="130"/>
+                <Label Content="Выбор цвета" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="0" Grid.ColumnSpan="2"  FontSize="20" Height="34" Width="130"/>
 
                 <ListView FontSize="20" FontFamily="Times New Roman" Grid.ColumnSpan="2" Grid.Row="1" >
                     <ListView.View>
@@ -60,43 +59,31 @@
                     </ListView.Resources>
                 </ListView>
 
-                <Button Grid.Row="2" Grid.Column="0" Width="146" HorizontalAlignment="Left" Template="{DynamicResource TemplateNavigationButton}"  RenderTransformOrigin="0.5,0.5" Margin="75,0,0,7">
-                    <Button.RenderTransform>
-                        <TransformGroup>
-                            <ScaleTransform ScaleY="-1"/>
-                            <SkewTransform/>
-                            <RotateTransform/>
-                            <TranslateTransform/>
-                        </TransformGroup>
-                    </Button.RenderTransform>
-                    <Image Source="\Data\Images\Plus.jpg" Width="60" />
-                </Button>
-                <Button Grid.Row="2" Grid.Column="1" Width="146" HorizontalAlignment="Left" Template="{DynamicResource TemplateNavigationButton}"  RenderTransformOrigin="0.5,0.5" Margin="35,0,0,7">
-                    <Button.RenderTransform>
-                        <TransformGroup>
-                            <ScaleTransform ScaleY="-1"/>
-                            <SkewTransform/>
-                            <RotateTransform/>
-                            <TranslateTransform/>
-                        </TransformGroup>
-                    </Button.RenderTransform>
-                    <Image Source="/Data/Images/back.ico" Width="30" RenderTransformOrigin="0.5,0.5">
-                        <Image.RenderTransform>
-                            <TransformGroup>
-                                <ScaleTransform/>
-                                <SkewTransform/>
-                                <RotateTransform Angle="180"/>
-                                <TranslateTransform/>
-                            </TransformGroup>
-                        </Image.RenderTransform>
-                    </Image>
-                </Button>
+                <Grid Grid.Row ="2" Grid.Column="0" Grid.ColumnSpan="2">
+                    <Button Grid.Column="0" Width="146" HorizontalAlignment="Left" Template="{DynamicResource TemplateNavigationButton}"  RenderTransformOrigin="0.5,0.5" Margin="10" >
+                        <Image Source="\Data\Images\Plus.jpg" Width="60" />
+                    </Button>
+                    <Button Grid.Column="2" Width="146" HorizontalAlignment="Right" Template="{DynamicResource TemplateNavigationButton}"  RenderTransformOrigin="0.5,0.5" Margin="10">
+                        <Image Source="/Data/Images/back.ico" Width="40" RenderTransformOrigin="0.5,0.5" Height="40">
+                            <Image.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform/>
+                                    <SkewTransform/>
+                                    <RotateTransform Angle="180"/>
+                                    <TranslateTransform/>
+                                </TransformGroup>
+                            </Image.RenderTransform>
+                        </Image>
+                    </Button>
+                </Grid>
+
+
 
 
             </Grid>
 
         </Border>
-        <Border Grid.Column="3" Grid.ColumnSpan="2" Style="{DynamicResource TemplateBorderBase}" MinWidth="100" MaxWidth="1000" MinHeight="100" MaxHeight="293" Margin="0,-114,0,184" Grid.RowSpan="2">
+        <Border Grid.Column="3" Grid.ColumnSpan="1" Style="{DynamicResource TemplateBorderBase}" Height="293" VerticalAlignment="Top" Grid.Row="1">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition/>
@@ -121,19 +108,19 @@
                 <Border Grid.Column="1" Style="{DynamicResource TemplateBorderBase}" Margin="5,44,15,194"/>
                 <Border Style="{DynamicResource TemplateBorderBase}" Margin="5,119,15,119" Grid.Column="1"/>
                 <Border Grid.Column="1" Style="{DynamicResource TemplateBorderBase}" Margin="5,192,15,46"/>
-                <TextBlock Padding = "5" HorizontalAlignment="Left" Margin="639,49,0,0" TextWrapping="Wrap" Text="Просмотр рецепта" Height="42" Width="101" FontSize="14" FontFamily="Times New Roman" VerticalAlignment="Top" TextAlignment="Center" Grid.ColumnSpan="2"/>
-                <TextBlock Padding = "5" HorizontalAlignment="Left" Margin="639,130,0,0" TextWrapping="Wrap" Text="Расчет КП" Height="42" Width="102" FontSize="14" FontFamily="Times New Roman" VerticalAlignment="Top" TextAlignment="Center" Grid.ColumnSpan="2"/>
+                <TextBlock Padding = "5" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Просмотр рецепта" Height="42" Width="101" FontSize="14" FontFamily="Times New Roman" VerticalAlignment="Top" TextAlignment="Center" Grid.Column="1" Margin="1,49,0,0"/>
+                <TextBlock Padding = "5" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Расчет КП" Height="42" Width="102" FontSize="14" FontFamily="Times New Roman" VerticalAlignment="Center" TextAlignment="Center" Grid.Column="1"/>
                 <TextBlock Padding = "5" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Изготовление выкрасов" Height="42" Width="97" FontSize="14" FontFamily="Times New Roman" VerticalAlignment="Top" TextAlignment="Center" Margin="10,197,0,0" Grid.Column="1"/>
 
-                <Button Height="54" Width="53" Margin="296,44,0,0"
-                        VerticalAlignment="Top" HorizontalAlignment="Left" 
-                        Style="{DynamicResource TemplateBlackToRedRounded}" Grid.Column="1"/>
-                <Button Height="56" Width="53" Margin="296,0,0,0"
-                    VerticalAlignment="Center" HorizontalAlignment="Left" 
-                    Style="{DynamicResource TemplateBlackToRedRounded}" Grid.Column="1"/>
-                <Button Height="56" Width="53" Margin="296,192,0,0"
-                    VerticalAlignment="Top" HorizontalAlignment="Left" 
-                    Style="{DynamicResource TemplateBlackToRedRounded}" Grid.Column="1"/>
+                <Button Height="54" Width="53" 
+                        VerticalAlignment="Top" HorizontalAlignment="Right" 
+                        Style="{DynamicResource TemplateBlackToRedRounded}" Grid.Column="1" Margin="0,44,9,0"/>
+                <Button Height="56" Width="53" 
+                    VerticalAlignment="Top" HorizontalAlignment="Right" 
+                    Style="{DynamicResource TemplateBlackToRedRounded}" Grid.Column="1" Margin="0,119,9,0" />
+                <Button Height="56" Width="53" 
+                    VerticalAlignment="Bottom" HorizontalAlignment="Right" 
+                    Style="{DynamicResource TemplateBlackToRedRounded}" Grid.Column="1" Margin="0,0,9,45"/>
 
 
             </Grid>
@@ -141,7 +128,7 @@
         </Border>
 
 
-        <Border Style="{DynamicResource TemplateBorderBase}" Margin="0,357,0,0" Grid.Column="3" Grid.Row="1" Grid.ColumnSpan="2" MinWidth="100" MaxWidth="1000" MinHeight="100" MaxHeight="293" VerticalAlignment="Bottom">
+        <Border Style="{DynamicResource TemplateBorderBase}" Grid.Column="3" Grid.Row="1" Grid.ColumnSpan="1" Height="293" VerticalAlignment="Top" Margin="0,367,0,0">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition/>
@@ -169,12 +156,12 @@
                 </Border>
 
 
-                <Button Height="54" Width="53" Margin="296,92,0,0"
-            VerticalAlignment="Top" HorizontalAlignment="Left" 
-            Style="{DynamicResource TemplateBlackToRedRounded}" Grid.Column="1"/>
-                <Button Height="60" Width="53" Margin="296,170,0,0"
-            VerticalAlignment="Top" HorizontalAlignment="Left" 
-            Style="{DynamicResource TemplateBlackToRedRounded}" Grid.Column="1"/>
+                <Button Height="54" Width="53"
+            VerticalAlignment="Top" HorizontalAlignment="Right" 
+            Style="{DynamicResource TemplateBlackToRedRounded}" Grid.Column="1" Margin="0,91,9,0"/>
+                <Button Height="60" Width="53" 
+            VerticalAlignment="Top" HorizontalAlignment="Right" 
+            Style="{DynamicResource TemplateBlackToRedRounded}" Grid.Column="1" Margin="0,172,10,0"/>
 
             </Grid>
 
