@@ -10,8 +10,6 @@ namespace ColorManager.DataBase.Queries
 {
     public class PallettersQuery
     {
-
-
         /// <summary>
         /// Возвращает все элементы таблицы Palletters
         /// </summary>
@@ -53,28 +51,27 @@ namespace ColorManager.DataBase.Queries
         }
 
 
-        /// <summary>
-        /// Возвращает цветовую гамму продукта
-        /// </summary>
-        /// <param name="id">ID продукта</param>
-        /// <returns>palletters при нахождении элеменета/null при не нахождении элемента</returns>
-        public Palletters GetColorFan(int id)
+       /// <summary>
+       /// Возвращает цветовую гамму продукта
+       /// </summary>
+       /// <param name="productGroup">Имя продукта</param>
+       /// <returns>List строковых значений по имени продукта</returns>
+        public List<string> GetColorFan(string productGroup)
         {
             try
             {
                 using (var db = new ApplicationContext())
                 {
-                    var palletter = db.Palletters.FirstOrDefault(p => p.ID == id);
+                    List<string> colorFan = new List<string>();
 
-                    if(palletter != null)
+                    foreach (Palletters palletter in db.Palletters)
                     {
-                        return palletter;
+                        if (palletter.ProductGroup == productGroup)
+                        {
+                            colorFan.Add(palletter.ColorFan);
+                        }
                     }
-                    else
-                    {
-                        MessageBox.Show("Не удалось найти веер цветов");
-                        return null;
-                    }
+                    return colorFan;
                 }
             }
             catch (Exception ex)
@@ -83,6 +80,39 @@ namespace ColorManager.DataBase.Queries
                 return null;
             }
         }
+
+
+        /// <summary>
+        /// Возвращает цвета продукта
+        /// </summary>
+        /// <param name="productGroup">Имя продукта</param>
+        /// <param name="colorFan">Цветовая гамма</param>
+        /// <returns>List строковых значений по имени и цветовой гамме продукта</returns>
+        public List<string> GetColor(string productGroup, string colorFan)
+        {
+            try
+            {
+                using (var db = new ApplicationContext())
+                {
+                    List<string> color = new List<string>();
+
+                    foreach (Palletters palletter in db.Palletters)
+                    {
+                        if (palletter.ProductGroup == productGroup && palletter.ColorFan == colorFan)
+                        {
+                            color.Add(palletter.Color);
+                        }
+                    }
+                    return color;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "", MessageBoxButton.OK, MessageBoxImage.Error);
+                return null;
+            }
+        }
+
 
         /// <summary>
         /// Возвращает наличие продукта
@@ -113,6 +143,6 @@ namespace ColorManager.DataBase.Queries
                 MessageBox.Show(ex.Message, "", MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;
             }
-        }
+        } // НЕ ДОДЕЛАНО
     }
 }
