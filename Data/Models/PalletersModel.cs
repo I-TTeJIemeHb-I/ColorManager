@@ -26,9 +26,6 @@ namespace ColorManager.Data.Models
             Color = color;
             LongName = $"{productGroup}, {colorFan}, {color}";
             Availability = availability;
-
-            // Здесь должна быть конверташка из HEX в SolidColorBrush
-            //ColorValue = new SolidColorBrush(System.Windows.Media.Color.FromRgb(100, 0, 100));
             ColorValue = new BrushConverter().ConvertFrom(hex) as SolidColorBrush;
         }
        

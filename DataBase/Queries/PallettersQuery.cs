@@ -23,13 +23,25 @@ namespace ColorManager.DataBase.Queries
                 using (var db = new ApplicationContext())
                 {
                     List<Palletters> palletters = new List<Palletters>();
-                    
+                    bool repeat = false;
 
-                    foreach(Palletters palletter in db.Palletters)
+                    foreach (Palletters palletter in db.Palletters)
                     {
-                        palletters.Add(palletter);
+                        foreach (Palletters palletter1 in palletters)
+                        {
+                            if (palletter == palletter1)
+                            {
+                                repeat = true;
+                                continue;
+                            }
+                        }
+                        if (repeat) continue;
+                        else
+                        {
+                            repeat = false;
+                            palletters.Add(palletter);
+                        }
                     }
-
                     return palletters;
                 }
             }
