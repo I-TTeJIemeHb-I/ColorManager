@@ -21,23 +21,17 @@ namespace ColorManager.DataBase.Queries
                 using (var db = new ApplicationContext())
                 {
                     List<Palletters> palletters = new List<Palletters>();
-                    bool repeat = false;
 
                     foreach (Palletters palletter in db.Palletters)
                     {
                         foreach (Palletters palletter1 in palletters)
                         {
-                            if (palletter == palletter1)
+                            if (palletter1 == palletter) break;
+                            else
                             {
-                                repeat = true;
-                                continue;
+                                palletters.Add(palletter);
+                                break;
                             }
-                        }
-                        if (repeat) continue;
-                        else
-                        {
-                            repeat = false;
-                            palletters.Add(palletter);
                         }
                     }
                     return palletters;
@@ -51,11 +45,46 @@ namespace ColorManager.DataBase.Queries
         }
 
 
-       /// <summary>
-       /// Возвращает цветовую гамму продукта
-       /// </summary>
-       /// <param name="productGroup">Имя продукта</param>
-       /// <returns>List строковых значений по имени продукта</returns>
+        /// <summary>
+        /// Возвращает имя продукта
+        /// </summary>
+        /// <returns>List строковых значений с именем продукта</returns>
+        public List<string> GetProductGroup()
+        {
+            try
+            {
+                using (var db = new ApplicationContext())
+                {
+                    List<string> productGroup = new List<string>();
+
+                    foreach (Palletters palletter in db.Palletters)
+                    {
+                        foreach (string group in productGroup)
+                        {
+                            if (group == palletter.ProductGroup) break;
+                            else
+                            {
+                                productGroup.Add(palletter.ProductGroup);
+                                break;
+                            }
+                        }
+                    }
+                    return productGroup;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "", MessageBoxButton.OK, MessageBoxImage.Error);
+                return null;
+            }
+        }
+
+
+        /// <summary>
+        /// Возвращает цветовую гамму продукта
+        /// </summary>
+        /// <param name="productGroup">Имя продукта</param>
+        /// <returns>List строковых значений по имени продукта</returns>
         public List<string> GetColorFan(string productGroup)
         {
             try
@@ -67,9 +96,7 @@ namespace ColorManager.DataBase.Queries
                     foreach (Palletters palletter in db.Palletters)
                     {
                         if (palletter.ProductGroup == productGroup)
-                        {
                             colorFan.Add(palletter.ColorFan);
-                        }
                     }
                     return colorFan;
                 }
@@ -99,9 +126,7 @@ namespace ColorManager.DataBase.Queries
                     foreach (Palletters palletter in db.Palletters)
                     {
                         if (palletter.ProductGroup == productGroup && palletter.ColorFan == colorFan)
-                        {
                             color.Add(palletter.Color);
-                        }
                     }
                     return color;
                 }
@@ -115,27 +140,61 @@ namespace ColorManager.DataBase.Queries
 
 
         /// <summary>
-        /// Возвращает наличие продукта
+        /// Возвращает величену цвета
         /// </summary>
-        /// <param name="id">ID продукта</param>
-        /// <returns>true при наличии продукта/false при его отсутствии</returns>
-        public bool GetInStockInfo(int id)
+        /// <param name="productGroup">Имя продукта</param>
+        /// <param name="colorFan">Цветовая гамма</param>
+        /// <param name="color">Цвет продукта</param>
+        /// <returns>Строка с величиной цвета</returns>
+        public string GetColorValue(string productGroup, string colorFan, string color)
         {
             try
             {
                 using (var db = new ApplicationContext())
                 {
-                    var palletter = db.Palletters.FirstOrDefault(p => p.ID == id);
+                    foreach (Palletters palletter in db.Palletters)
+                    {
+                        if (palletter.ProductGroup == productGroup && palletter.ColorFan == colorFan && palletter.Color == color)
+                        {
+                            color = palletter.Color;
+                            break;
+                        }
+                    }
+                    return color;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "", MessageBoxButton.OK, MessageBoxImage.Error);
+                return null;
+            }
+        }
 
-                    if (palletter != null)
+        
+        /// <summary>
+        /// Возвращает наличие продукта
+        /// </summary>
+        /// <param name="productGroup">Имя продукта</param>
+        /// <param name="colorFan">Цветовая гамма</param>
+        /// <param name="color">Цвет продукта</param>
+        /// <param name="colorValue">Величина цвета</param>
+        /// <returns>true при наличии продукта/false при его отсутствии</returns>
+        public bool GetInStockInfo(string productGroup, string colorFan, string color, string colorValue)
+        {
+            try
+            {
+                using (var db = new ApplicationContext())
+                {
+                    bool inStockInfo = false;
+                    foreach (Palletters palletter in db.Palletters)
                     {
-                        if (palletter.InStock) return true;
-                        else return false;
+                        if (palletter.ProductGroup == productGroup && palletter.ColorFan == colorFan && palletter.Color == color && palletter.ColorValue == colorValue)
+                        {
+                            inStockInfo = palletter.InStock;
+                            break;
+                        }
                     }
-                    else
-                    {
-                        return false;
-                    }
+                    return inStockInfo;
                 }
             }
             catch (Exception ex)
@@ -143,6 +202,6 @@ namespace ColorManager.DataBase.Queries
                 MessageBox.Show(ex.Message, "", MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;
             }
-        } // НЕ ДОДЕЛАНО
+        }
     }
 }
