@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:ColorManager.Data.Views"
       mc:Ignorable="d" 
       d:DesignHeight="800" d:DesignWidth="1920"
-      Title="Calculator">
+      Title="Calculator" Height="798">
 
     <Grid>
         <Grid.RowDefinitions>
@@ -22,12 +22,12 @@
             <ColumnDefinition MinWidth="10" MaxWidth="122"/>
         </Grid.ColumnDefinitions>
 
-        <Button Grid.Column="0" Grid.Row="1" Width="50" HorizontalAlignment="Right" Command="{Binding GoBack}" 
+        <Button Grid.Column="0" Grid.Row="1" Width="50" Height="50" HorizontalAlignment="Right" VerticalAlignment="Top" Command="{Binding GoBack}" 
         CommandParameter="{Binding ElementName=ThisWindow}" Template="{DynamicResource TemplateNavigationButton}" Margin="0,35,0,570">
             <Image Source="/Data/Images/back.ico" Width="30"/>
         </Button>
 
-        <Button Grid.Column="0" Grid.Row="1" Width="50" HorizontalAlignment="Right" Command="{Binding GoBack}" 
+        <Button Grid.Column="0" Grid.Row="1" Width="50" Height="50" HorizontalAlignment="Right" VerticalAlignment="Top" Command="{Binding GoBack}" 
         CommandParameter="{Binding ElementName=ThisWindow}" Template="{DynamicResource TemplateNavigationButton}" Margin="0,95,0,510">
             <Image Source="\Data\Images\reset.png" Width="50" />
         </Button>
@@ -36,9 +36,9 @@
 
             <Grid>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="3*"></RowDefinition>
-                    <RowDefinition Height="511"/>
-                    <RowDefinition Height="4*"></RowDefinition>
+                    <RowDefinition Height="80"></RowDefinition>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="80"></RowDefinition>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition></ColumnDefinition>
@@ -83,7 +83,7 @@
             </Grid>
 
         </Border>
-        <Border Grid.Column="3" Grid.ColumnSpan="1" Style="{DynamicResource TemplateBorderBase}" Height="293" VerticalAlignment="Top" Grid.Row="1">
+        <Border Grid.Column="3" Grid.ColumnSpan="1" Style="{DynamicResource TemplateBorderBase}" Height="300" VerticalAlignment="Top" Grid.Row="1">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition/>
@@ -109,7 +109,7 @@
                 <Border Style="{DynamicResource TemplateBorderBase}" Margin="5,119,15,119" Grid.Column="1"/>
                 <Border Grid.Column="1" Style="{DynamicResource TemplateBorderBase}" Margin="5,192,15,46"/>
                 <TextBlock Padding = "5" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Просмотр рецепта" Height="42" Width="101" FontSize="14" FontFamily="Times New Roman" VerticalAlignment="Top" TextAlignment="Center" Grid.Column="1" Margin="1,49,0,0"/>
-                <TextBlock Padding = "5" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Расчет КП" Height="42" Width="102" FontSize="14" FontFamily="Times New Roman" VerticalAlignment="Center" TextAlignment="Center" Grid.Column="1"/>
+                <TextBlock Padding = "5" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Расчет КП" Height="42" Width="102" FontSize="14" FontFamily="Times New Roman" VerticalAlignment="Center" TextAlignment="Center" Grid.Column="1" Margin="0,15,0,0"/>
                 <TextBlock Padding = "5" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Изготовление выкрасов" Height="42" Width="97" FontSize="14" FontFamily="Times New Roman" VerticalAlignment="Top" TextAlignment="Center" Margin="10,197,0,0" Grid.Column="1"/>
 
                 <Button Height="54" Width="53" 
@@ -128,7 +128,7 @@
         </Border>
 
 
-        <Border Style="{DynamicResource TemplateBorderBase}" Grid.Column="3" Grid.Row="1" Grid.ColumnSpan="1" Height="293" VerticalAlignment="Top" Margin="0,367,0,0">
+        <Border Style="{DynamicResource TemplateBorderBase}" Grid.Column="3" Grid.Row="1" Grid.ColumnSpan="1" Height="300" VerticalAlignment="Top" Margin="0,367,0,0">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition/>
