@@ -10,7 +10,6 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace ColorManager.Data.Views
@@ -18,7 +17,7 @@ namespace ColorManager.Data.Views
     /// <summary>
     /// Логика взаимодействия для ColorSelection.xaml
     /// </summary>
-    public partial class ColorSelection : Page
+    public partial class ColorSelection : Window
     {
         public ColorSelection()
         {
