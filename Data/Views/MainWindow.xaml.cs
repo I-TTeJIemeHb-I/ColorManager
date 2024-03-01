@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 
 namespace ColorManager.Data.Views
 {
@@ -7,6 +8,11 @@ namespace ColorManager.Data.Views
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        internal void Navigate(Calculator calculator)
+        {
+            throw new NotImplementedException();
         }
     }
 }

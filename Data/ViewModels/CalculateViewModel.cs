@@ -1,4 +1,5 @@
-﻿using ColorManager.Data.Views;
+﻿using ColorManager.Data.Models;
+using ColorManager.DataBase.Queries;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -10,47 +11,46 @@ using System.Windows.Controls;
 
 namespace ColorManager.Data.ViewModels
 {
-    public class HomePageViewModel : INotifyPropertyChanged
+    public class CalculateViewModel : INotifyPropertyChanged
     {
         #region INotifyPropertyChanged
+
         public event PropertyChangedEventHandler? PropertyChanged;
         public void OnPropertyChanged([CallerMemberName] string propertyName = "")
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
+
         #endregion
 
+        public SettingsModel Model { get; set; }
 
-        private RelayCommand _goToColorStation;
-        private RelayCommand _goToCalculator;
+        public CalculateViewModel()
+        {
+            Model = new SettingsModel();
+            SettingsQuery.GetUserInfo(Model);
+        }
 
+        #region Команды ViewModel
 
-        public RelayCommand GoToColorStation
+        private RelayCommand _goBack;
+
+        public RelayCommand GoBack
         {
             get
             {
-                return _goToColorStation ??=
+                return _goBack ??=
                     new RelayCommand(obj =>
                     {
                         Page page = obj as Page;
-                        page.NavigationService.Navigate(new Views.ColorStantion());
+                        page.NavigationService.GoBack();
                     });
             }
         }
 
-        public RelayCommand GoToCalculator
-        {
-            get
-            {
-                return _goToCalculator ??=
-                    new RelayCommand(obj =>
-                    {
-                        Page page = obj as Page;
-                        page.NavigationService.Navigate(new Views.Calculator());
-                    });
-            }
-        }
 
+
+        #endregion
 
 
     }
