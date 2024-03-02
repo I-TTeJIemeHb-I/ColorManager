@@ -5,17 +5,17 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ColorManager.Data.Views"
         mc:Ignorable="d"
-        Title="ColorSelection" Height="292" Width="245">
+        Title="ColorSelection" Height="295" Width="243">
     <Grid>
 
         <Grid.RowDefinitions>
-            <RowDefinition Height="40"/>
-            <RowDefinition Height="200"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition MinHeight="20" MaxHeight="40"/>
+            <RowDefinition MinHeight="150" MaxHeight="200"/>
+            <RowDefinition MinHeight="25" MaxHeight="50"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="95"/>
-            <ColumnDefinition Width="150"/>
+            <ColumnDefinition MinWidth="70" MaxWidth="95"/>
+            <ColumnDefinition MinWidth="125" MaxWidth="150"/>
         </Grid.ColumnDefinitions>
 
 
