@@ -16,6 +16,8 @@
     <None Remove="Data\Images\hide_window.png" />
     <None Remove="Data\Images\next.ico" />
     <None Remove="Data\Images\next_white.png" />
+    <None Remove="Data\Images\Plus.jpg" />
+    <None Remove="Data\Images\reset.png" />
     <None Remove="Data\Images\settings.svg" />
     <None Remove="Data\Images\Stas.png" />
   </ItemGroup>
@@ -48,6 +50,12 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Data\Images\next_white.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Data\Images\Plus.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Data\Images\reset.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Data\Images\settings.svg">
