@@ -23,14 +23,6 @@ namespace ColorManager.Data.ViewModels
 
         #endregion
 
-        public SettingsModel Model { get; set; }
-
-        public CalculateViewModel()
-        {
-            Model = new SettingsModel();
-            SettingsQuery.GetUserInfo(Model);
-        }
-
         #region Команды ViewModel
 
         private RelayCommand _goBack;
@@ -51,7 +43,5 @@ namespace ColorManager.Data.ViewModels
 
 
         #endregion
-
-
     }
 }
