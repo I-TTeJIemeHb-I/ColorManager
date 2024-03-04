@@ -1,4 +1,5 @@
-﻿using ColorManager.DataBase.Tables;
+﻿using ColorManager.Data.Models;
+using ColorManager.DataBase.Tables;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,7 +15,7 @@ namespace ColorManager.DataBase.Queries
         /// Возвращает все элементы таблицы Palletters
         /// </summary>
         /// <returns>palletters при успешном поиске эелементов/null при не нахождении эелементов</returns>
-        public List<Palletters> GetAll()
+        public static List<Palletters> GetAll()
         {
             try
             {
@@ -49,7 +50,7 @@ namespace ColorManager.DataBase.Queries
         /// Возвращает имя продукта
         /// </summary>
         /// <returns>List строковых значений с именем продукта</returns>
-        public List<string> GetProductGroup()
+        public static List<string> GetProductGroup()
         {
             try
             {
@@ -85,7 +86,7 @@ namespace ColorManager.DataBase.Queries
         /// </summary>
         /// <param name="productGroup">Имя продукта</param>
         /// <returns>List строковых значений по имени продукта</returns>
-        public List<string> GetColorFan(string productGroup)
+        public static List<string> GetColorFan(string productGroup)
         {
             try
             {
@@ -115,7 +116,7 @@ namespace ColorManager.DataBase.Queries
         /// <param name="productGroup">Имя продукта</param>
         /// <param name="colorFan">Цветовая гамма</param>
         /// <returns>List строковых значений по имени и цветовой гамме продукта</returns>
-        public List<string> GetColor(string productGroup, string colorFan)
+        public static List<string> GetColor(string productGroup, string colorFan)
         {
             try
             {
@@ -146,7 +147,7 @@ namespace ColorManager.DataBase.Queries
         /// <param name="colorFan">Цветовая гамма</param>
         /// <param name="color">Цвет продукта</param>
         /// <returns>Строка с величиной цвета</returns>
-        public string GetColorValue(string productGroup, string colorFan, string color)
+        public static ColorSelectionModel GetColorValue(ColorSelectionModel model)
         {
             try
             {
@@ -154,13 +155,13 @@ namespace ColorManager.DataBase.Queries
                 {
                     foreach (Palletters palletter in db.Palletters)
                     {
-                        if (palletter.ProductGroup == productGroup && palletter.ColorFan == colorFan && palletter.Color == color)
+                        if (palletter.ProductGroup == model.ProductGroup && palletter.ColorFan == model.ColorFan && palletter.Color == model.Color)
                         {
-                            color = palletter.Color;
+                            model.ColorValue = palletter.Color;
                             break;
                         }
                     }
-                    return color;
+                    return model;
                 }
             }
             catch (Exception ex)
@@ -179,7 +180,7 @@ namespace ColorManager.DataBase.Queries
         /// <param name="color">Цвет продукта</param>
         /// <param name="colorValue">Величина цвета</param>
         /// <returns>true при наличии продукта/false при его отсутствии</returns>
-        public bool GetInStockInfo(string productGroup, string colorFan, string color, string colorValue)
+        public static ColorSelectionModel GetInStockInfo(ColorSelectionModel model)
         {
             try
             {
@@ -188,19 +189,19 @@ namespace ColorManager.DataBase.Queries
                     bool inStockInfo = false;
                     foreach (Palletters palletter in db.Palletters)
                     {
-                        if (palletter.ProductGroup == productGroup && palletter.ColorFan == colorFan && palletter.Color == color && palletter.ColorValue == colorValue)
+                        if (palletter.ProductGroup == model.ProductGroup && palletter.ColorFan == model.ColorFan && palletter.Color == model.Color && palletter.ColorValue == model.ColorValue)
                         {
-                            inStockInfo = palletter.InStock;
+                            model.InStockInfo = palletter.InStock;
                             break;
                         }
                     }
-                    return inStockInfo;
+                    return model;
                 }
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "", MessageBoxButton.OK, MessageBoxImage.Error);
-                return false;
+                return null;
             }
         }
     }

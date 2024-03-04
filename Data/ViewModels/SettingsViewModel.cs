@@ -63,7 +63,6 @@ namespace ColorManager.Data.ViewModels
                 return _saveData ??=
                     new RelayCommand(obj =>
                     {
-                        //Реализовать функцию сохранения данных
                         SettingsQuery.SaveData(Model);
                     });
             }
