@@ -50,8 +50,8 @@ namespace ColorManager.Data.ViewModels
                 return _goToColorSelection ??=
                     new RelayCommand(obj =>
                     {
-                        Frame frame = obj as Frame;
-                        frame.Navigate(new Views.ColorSelection());
+                        ColorSelection colorSelection = new ColorSelection();
+                        colorSelection.ShowDialog();
                     });
             }
         }
