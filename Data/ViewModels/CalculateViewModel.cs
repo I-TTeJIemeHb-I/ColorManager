@@ -1,4 +1,5 @@
 ﻿using ColorManager.Data.Models;
+using ColorManager.Data.Views;
 using ColorManager.DataBase.Queries;
 using System;
 using System.Collections.Generic;
@@ -7,6 +8,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
 
 namespace ColorManager.Data.ViewModels
@@ -26,6 +28,7 @@ namespace ColorManager.Data.ViewModels
         #region Команды ViewModel
 
         private RelayCommand _goBack;
+        private RelayCommand _goToColorSelection;
 
         public RelayCommand GoBack
         {
@@ -36,6 +39,19 @@ namespace ColorManager.Data.ViewModels
                     {
                         Page page = obj as Page;
                         page.NavigationService.GoBack();
+                    });
+            }
+        }
+
+        public RelayCommand GoToColorSelection
+        {
+            get
+            {
+                return _goToColorSelection ??=
+                    new RelayCommand(obj =>
+                    {
+                        Frame frame = obj as Frame;
+                        frame.Navigate(new Views.ColorSelection());
                     });
             }
         }

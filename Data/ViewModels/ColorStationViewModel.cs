@@ -11,7 +11,7 @@ using System.Windows.Controls;
 
 namespace ColorManager.Data.ViewModels
 {
-    public class ColorStation : INotifyPropertyChanged
+    public class ColorStationViewModel : INotifyPropertyChanged
     {
         #region INotifyPropertyChanged
 
@@ -25,7 +25,7 @@ namespace ColorManager.Data.ViewModels
 
         public SettingsModel Model { get; set; }
 
-        public ColorStation()
+        public ColorStationViewModel()
         {
             Model = new SettingsModel();
             SettingsQuery.GetUserInfo(Model);
@@ -48,14 +48,6 @@ namespace ColorManager.Data.ViewModels
                     });
             }
         }
-
-
-
-
         #endregion
-
-
-
-
     }
 }

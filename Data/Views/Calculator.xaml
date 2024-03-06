@@ -66,7 +66,7 @@
                 </ListView>
 
                 <Grid Grid.Row ="2" Grid.Column="0" Grid.ColumnSpan="2">
-                    <Button Grid.Column="0" Width="146" HorizontalAlignment="Left" Template="{DynamicResource TemplateNavigationButton}"  RenderTransformOrigin="0.5,0.5" Margin="10" >
+                    <Button Grid.Column="0" Width="146" HorizontalAlignment="Left" Command="{Binding GoToColorSelection}" CommandParameter="{Binding ElementName=ThisWindow}" Template="{DynamicResource TemplateNavigationButton}"  RenderTransformOrigin="0.5,0.5" Margin="10" >
                         <Image Source="\Data\Images\Plus.jpg" Width="60" />
                     </Button>
                     <Button Grid.Column="2" Width="146" HorizontalAlignment="Right" Template="{DynamicResource TemplateNavigationButton}"  RenderTransformOrigin="0.5,0.5" Margin="10">
