@@ -171,7 +171,7 @@ namespace ColorManager.DataBase.Queries
             }
         }
 
-        
+
         /// <summary>
         /// Возвращает наличие продукта
         /// </summary>

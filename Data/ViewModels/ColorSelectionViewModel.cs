@@ -23,19 +23,19 @@ namespace ColorManager.Data.ViewModels
 
         #endregion
 
-        public ColorSelectionModel Model { get; set; }
-
-        public ColorSelectionViewModel()
-        {
-            Model = new ColorSelectionModel();
-        }
-
+        public List<string> ProductGroup;
+        public List<string> ColorFan;
+        public List<string> Color;
+        public string SelectedItemProductGroup;
+        public string SelectedItemColorFan;
+        public string SelectedItemColor;
 
         #region Команды ViewModel
 
-
         private RelayCommand _getStockInfo;
-        private RelayCommand _getProductGroup;
+        private RelayCommand _windowLoaded;
+        private RelayCommand _getColorFan;
+        private RelayCommand _getColor;
 
         public RelayCommand GetInfo
         {
@@ -44,19 +44,46 @@ namespace ColorManager.Data.ViewModels
                 return _getStockInfo ??=
                     new RelayCommand(obj =>
                     {
-                        PallettersQuery.GetColorValue(Model);
+                       
                     });
             }
         }
 
-        public RelayCommand GetProductGroup
+        public RelayCommand WindowLoaded
         {
             get
             {
-                return _getStockInfo ??=
+
+                return _windowLoaded ??=
                     new RelayCommand(obj =>
                     {
-                        PallettersQuery.GetColorValue(Model);
+                        ProductGroup = PallettersQuery.GetProductGroup();
+                    });
+            }
+        }
+
+        public RelayCommand GetColorFan
+        {
+            get
+            {
+
+                return _getColorFan ??=
+                    new RelayCommand(obj =>
+                    {
+                        ColorFan = PallettersQuery.GetColorFan(SelectedItemProductGroup);
+                    });
+            }
+        }
+
+        public RelayCommand GetColor
+        {
+            get
+            {
+
+                return _getColor ??=
+                    new RelayCommand(obj =>
+                    {
+                        Color = PallettersQuery.GetColor(SelectedItemProductGroup, SelectedItemColorFan);
                     });
             }
         }
