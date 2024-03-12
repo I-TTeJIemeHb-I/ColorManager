@@ -12,7 +12,7 @@ namespace ColorManager.DataBase
     public class ApplicationContext : DbContext
     {
         public DbSet<Users> Users { get; set; } = null!;
-        public DbSet<Palletters> Palletters { get; set; } = null!;
+        public DbSet<Palettes> Palettes { get; set; } = null!;
 
         public ApplicationContext()
         {

@@ -1,10 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using ColorManager.DataBase.Queries;
+using System;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
+using System.Windows;
 
 namespace ColorManager.Data.Models
 {
@@ -20,79 +19,97 @@ namespace ColorManager.Data.Models
 
         #endregion
 
-        #region Свойства класса
 
-        private string _productGroup;
-        private string _colorFan;
-        private string _color;
-        private string _colorValue;
-        private bool _inStock;
+        #region Synglton
 
-        public string ProductGroup
+        private static ColorSelectionModel instance;
+        private static object syncRoot = new Object();
+
+        public static ColorSelectionModel getInstance()
         {
-            get { return _productGroup; }
-            set
+            if (instance == null)
             {
-                if (_productGroup != value)
+                lock (syncRoot)
                 {
-                    _productGroup = value;
-                    OnPropertyChanged();
+                    if (instance == null)
+                        instance = new ColorSelectionModel();
                 }
             }
-        }
-
-        public string ColorFan
-        {
-            get { return _colorFan; }
-            set
-            {
-                if (_colorFan != value)
-                {
-                    _colorFan = value;
-                    OnPropertyChanged();
-                }
-            }
-        }
-
-        public string Color
-        {
-            get { return _color; }
-            set
-            {
-                if (_color != value)
-                {
-                    _color = value;
-                    OnPropertyChanged();
-                }
-            }
-        }
-
-        public string ColorValue
-        {
-            get { return _colorValue; }
-            set
-            {
-                if (_colorValue != value)
-                {
-                    _colorValue = value;
-                    OnPropertyChanged();
-                }
-            }
-        }
-
-        public bool InStockInfo
-        {
-            get { return _inStock; }
-            set
-            {
-                if (_inStock != value)
-                {
-                    _inStock = value;
-                    OnPropertyChanged();
-                }
-            }
+            return instance;
         }
 
         #endregion
+
+
+        private string productGroupSelected;
+        private string colorFanSelected;
+        private string colorSelected;
+
+        public ObservableCollection<string> ProductGroup {get; set;}
+        public ObservableCollection<string> ColorFan { get; set; }
+        public ObservableCollection<string> Color { get; set; }
+
+        public string ProductGroupSelected
+        {
+            get { return productGroupSelected; }
+            set
+            {
+                if (productGroupSelected != value)
+                {
+                    productGroupSelected = value;
+                    OnPropertyChanged();
+                    GetColorFans();
+                }
+            }
+        }
+        public string ColorFanSelected
+        {
+            get { return colorFanSelected; }
+            set
+            {
+                if (colorFanSelected != value)
+                {
+                    colorFanSelected = value;
+                    OnPropertyChanged();
+                    GetColors();
+                }
+            }
+        }
+        public string ColorSelected
+        {
+            get { return colorSelected; }
+            set
+            {
+                if (colorSelected != value)
+                {
+                    colorSelected = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+
+        // Класс модели. Заполняет первый ComboBox автоматически.
+        // Для последующих просто выделяет место в памяти.
+        public ColorSelectionModel()
+        {
+            ProductGroup = PallettersQuery.GetProductGroup();
+            ColorFan = new ObservableCollection<string>();
+            Color = new ObservableCollection<string>();
+        }
+
+        // Метод для обновления списка Вееров. Вызывается при изменении свойства ProductGroupSelected
+        private void GetColorFans()
+        {
+            ColorFan.Clear();
+            PallettersQuery.GetColorFan(ProductGroupSelected);
+        }
+
+        // Метод для обновления списка Цветов. Вызывается при изменении свойства ColorFanSelected
+        private void GetColors()
+        {
+            Color.Clear();
+            PallettersQuery.GetColor(ProductGroupSelected, ColorFanSelected);
+        }
     }
 }

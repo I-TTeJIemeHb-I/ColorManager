@@ -10,7 +10,7 @@ using System.Diagnostics.CodeAnalysis;
 
 namespace ColorManager.DataBase.Tables
 {
-    public class Palletters
+    public class Palettes
     {
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity), DefaultValue(0)]
         public int ID { get; set; }

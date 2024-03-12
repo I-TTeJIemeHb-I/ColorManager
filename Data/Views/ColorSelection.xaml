@@ -7,15 +7,11 @@
         xmlns:vm="clr-namespace:ColorManager.Data.ViewModels"
         xmlns:local="clr-namespace:ColorManager.Data.Views"
         mc:Ignorable="d"
-        Title="ColorSelection" Height="295" Width="243" x:Name="ThisWindow">
+        Title="ColorSelection" Height="350" Width="250" ResizeMode="NoResize" x:Name="ThisWindow">
 
     <Window.DataContext>
         <vm:ColorSelectionViewModel/>
     </Window.DataContext>
-
-
-
-
 
     <Grid>
 
@@ -29,32 +25,50 @@
             <ColumnDefinition MinWidth="125" MaxWidth="150"/>
         </Grid.ColumnDefinitions>
 
-
-
-        <Grid x:Name="Body" Background="Transparent" Visibility="Hidden">
-            <Window x:Name="MainFrame">
-                <i:Interaction.Triggers>
-                    <i:EventTrigger EventName="Loaded">
-                        <i:InvokeCommandAction
-                     Command="{Binding WindowLoaded}"
-                     CommandParameter="{Binding ElementName=MainFrame}"/>
-                    </i:EventTrigger>
-                </i:Interaction.Triggers>
-            </Window>
-        </Grid>
-
-
-
         <Label Content="Выбор цвета" HorizontalAlignment="Left" Margin="65,8,0,0" Grid.Row="0" VerticalAlignment="Top" Grid.Column="0" Grid.ColumnSpan="2" FontSize="18" Height="32"/>
 
-        <ComboBox HorizontalAlignment="Right" x:Name="xui" ItemsSource="{Binding ProductGroup}" SelectedItem="{Binding SelectedItemProductGroup, UpdateSourceTrigger=PropertyChanged}"  Grid.Row="1" VerticalAlignment="Top" Width="120" Grid.Column ="1" Margin="0,33,20,0"/>
-        <ComboBox HorizontalAlignment="Right" Grid.Row="1" ItemsSource="{Binding ColorFan}" SelectedItem="{Binding SelectedItemColorFan, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="120" Grid.Column="1" Margin="0,83,20,0"/>
-        <ComboBox HorizontalAlignment="Right" Grid.Row="1" ItemsSource="{Binding Color}" SelectedItem="{Binding SelectedItemColor, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="120" Grid.Column="1" Margin="0,131,20,0"/>
-        <Button Content="Apple" HorizontalAlignment="Left" Command="{Binding GetInfo}"  Grid.Row="1" VerticalAlignment="Top" Width="66" Height="36" Grid.ColumnSpan="2" Margin="90,197,0,0" Grid.RowSpan="2" />
+        <ComboBox HorizontalAlignment="Right" ItemsSource="{Binding selectionModel.ProductGroup}" Name="ProductGroup_ComboBox"
+                  Grid.Row="1" VerticalAlignment="Top" Width="120" Grid.Column ="1" Margin="0,33,15,0">
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="SelectionChanged">
+                    <i:InvokeCommandAction
+                    Command="{Binding ProductGroupSelectionChanged}"
+                    CommandParameter="{Binding ElementName=ProductGroup_ComboBox}"/>
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+        </ComboBox>
+
+        <ComboBox HorizontalAlignment="Right" ItemsSource="{Binding selectionModel.ColorFan}" Name="ColorFan_ComboBox"
+                  Grid.Row="1" VerticalAlignment="Top" Width="120" Grid.Column="1" Margin="0,83,15,0">
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="SelectionChanged">
+                    <i:InvokeCommandAction
+                    Command="{Binding ColorFanSelectionChanged}"
+                    CommandParameter="{Binding ElementName=ColorFan_ComboBox}"/>
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+        </ComboBox>
+
+        <ComboBox HorizontalAlignment="Right" ItemsSource="{Binding selectionModel.Color}" Name="Color_ComboBox"
+                  Grid.Row="1" VerticalAlignment="Top" Width="120" Grid.Column="1" Margin="0,131,15,0">
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="SelectionChanged">
+                    <i:InvokeCommandAction
+                    Command="{Binding ColorSelectionChanged}"
+                    CommandParameter="{Binding ElementName=Color_ComboBox}"/>
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+        </ComboBox>
+
+
+        <Button Content="Apple" HorizontalAlignment="Left" Command="{Binding AddColor}"  
+                Grid.Row="1" VerticalAlignment="Top" Width="66" Height="36" Grid.ColumnSpan="2" 
+                Margin="90,197,0,0" Grid.RowSpan="2"/>
+        
         <Label Content="Продукт" HorizontalAlignment="Left"  Grid.Row="1" VerticalAlignment="Top" Margin="10,29,0,0"/>
         <Label Content="Веер" HorizontalAlignment="Left"  Grid.Row="1" VerticalAlignment="Top" Margin="18,84,0,0"/>
         <Label Content="Цвет" HorizontalAlignment="Left"  Grid.Row="1" VerticalAlignment="Top" Margin="18,124,0,0"/>
-
-
+        
     </Grid>
+    
 </Window>

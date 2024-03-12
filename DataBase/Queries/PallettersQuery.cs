@@ -2,9 +2,7 @@
 using ColorManager.DataBase.Tables;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Collections.ObjectModel;
 using System.Windows;
 
 namespace ColorManager.DataBase.Queries
@@ -15,17 +13,17 @@ namespace ColorManager.DataBase.Queries
         /// Возвращает все элементы таблицы Palletters
         /// </summary>
         /// <returns>palletters при успешном поиске эелементов/null при не нахождении эелементов</returns>
-        public static List<Palletters> GetAll()
+        public static List<Palettes> GetAll()
         {
             try
             {
                 using (var db = new ApplicationContext())
                 {
-                    List<Palletters> palletters = new List<Palletters>();
+                    List<Palettes> palletters = new List<Palettes>();
 
-                    foreach (Palletters palletter in db.Palletters)
+                    foreach (Palettes palletter in db.Palettes)
                     {
-                        foreach (Palletters palletter1 in palletters)
+                        foreach (Palettes palletter1 in palletters)
                         {
                             if (palletter1 == palletter) break;
                             else
@@ -50,33 +48,37 @@ namespace ColorManager.DataBase.Queries
         /// Возвращает имя продукта
         /// </summary>
         /// <returns>List строковых значений с именем продукта</returns>
-        public static List<string> GetProductGroup()
+        public static ObservableCollection<string> GetProductGroup()
         {
             try
             {
+                ObservableCollection<string> strings = new ObservableCollection<string>();
+
                 using (var db = new ApplicationContext())
                 {
-                    List<string> productGroup = new List<string>();
-
-                    foreach (Palletters palletter in db.Palletters)
+                    // Перебираем все возможные варианты
+                    foreach (Palettes palettes in db.Palettes)
                     {
-                        foreach (string group in productGroup)
+                        // Проверяем значение на null, чтобы в списке ComboBox не было пустых ячеек
+                        if (palettes.ProductGroup != null)
                         {
-                            if (group == palletter.ProductGroup) break;
-                            else
+                            // Проверяем список на наличие аналогичного значения
+                            // если такового нет - добавляем в список.
+                            // Тем самым исключаем дубликаты.\
+                            if (!strings.Contains(palettes.ProductGroup))
                             {
-                                productGroup.Add(palletter.ProductGroup);
-                                break;
+                                strings.Add(palettes.ProductGroup);
                             }
                         }
                     }
-                    return productGroup;
                 }
+
+                return strings;
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "", MessageBoxButton.OK, MessageBoxImage.Error);
-                return null;
+                return new ObservableCollection<string>();
             }
         }
 
@@ -86,26 +88,32 @@ namespace ColorManager.DataBase.Queries
         /// </summary>
         /// <param name="productGroup">Имя продукта</param>
         /// <returns>List строковых значений по имени продукта</returns>
-        public static List<string> GetColorFan(string productGroup)
+        public static void GetColorFan(string productGroup)
         {
+            // Здесь логику добавления цвета усложняем для того чтобы интерфейс автоматически обновлялся
+            // Обращаемся к списку, находящемуся в ColorSelectionModel и добавляем цвета в него напрямую
             try
             {
                 using (var db = new ApplicationContext())
                 {
-                    List<string> colorFan = new List<string>();
-
-                    foreach (Palletters palletter in db.Palletters)
+                    foreach (Palettes palettes in db.Palettes)
                     {
-                        if (palletter.ProductGroup == productGroup)
-                            colorFan.Add(palletter.ColorFan);
+                        if (palettes.ProductGroup == productGroup)
+                        {
+                            if (palettes.ColorFan != null)
+                            {
+                                if (!ColorSelectionModel.getInstance().ColorFan.Contains(palettes.ColorFan))
+                                {
+                                    ColorSelectionModel.getInstance().ColorFan.Add(palettes.ColorFan);
+                                }
+                            }
+                        }
                     }
-                    return colorFan;
                 }
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "", MessageBoxButton.OK, MessageBoxImage.Error);
-                return null;
             }
         }
 
@@ -116,26 +124,32 @@ namespace ColorManager.DataBase.Queries
         /// <param name="productGroup">Имя продукта</param>
         /// <param name="colorFan">Цветовая гамма</param>
         /// <returns>List строковых значений по имени и цветовой гамме продукта</returns>
-        public static List<string> GetColor(string productGroup, string colorFan)
+        public static void GetColor(string productGroup, string colorFan)
         {
+            // Здесь логику добавления цвета усложняем для того чтобы интерфейс автоматически обновлялся
+            // Обращаемся к списку, находящемуся в ColorSelectionModel и добавляем цвета в него напрямую
             try
             {
                 using (var db = new ApplicationContext())
                 {
-                    List<string> color = new List<string>();
-
-                    foreach (Palletters palletter in db.Palletters)
+                    foreach (Palettes palettes in db.Palettes)
                     {
-                        if (palletter.ProductGroup == productGroup && palletter.ColorFan == colorFan)
-                            color.Add(palletter.Color);
+                        if (palettes.ProductGroup == productGroup && palettes.ColorFan == colorFan)
+                        {
+                            if (palettes.Color != null)
+                            {
+                                if (!ColorSelectionModel.getInstance().Color.Contains(palettes.Color))
+                                {
+                                    ColorSelectionModel.getInstance().Color.Add(palettes.Color);
+                                }
+                            }
+                        }
                     }
-                    return color;
                 }
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "", MessageBoxButton.OK, MessageBoxImage.Error);
-                return null;
             }
         }
 
@@ -149,26 +163,27 @@ namespace ColorManager.DataBase.Queries
         /// <returns>Строка с величиной цвета</returns>
         public static ColorSelectionModel GetColorValue(ColorSelectionModel model)
         {
-            try
-            {
-                using (var db = new ApplicationContext())
-                {
-                    foreach (Palletters palletter in db.Palletters)
-                    {
-                        if (palletter.ProductGroup == model.ProductGroup && palletter.ColorFan == model.ColorFan && palletter.Color == model.Color)
-                        {
-                            model.ColorValue = palletter.Color;
-                            break;
-                        }
-                    }
-                    return model;
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "", MessageBoxButton.OK, MessageBoxImage.Error);
-                return null;
-            }
+            //try
+            //{
+            //    using (var db = new ApplicationContext())
+            //    {
+            //        foreach (Palettes palletter in db.Palettes)
+            //        {
+            //            if (palletter.ProductGroup == model.ProductGroup && palletter.ColorFan == model.ColorFan && palletter.Color == model.Color)
+            //            {
+            //                model.ColorValue = palletter.Color;
+            //                break;
+            //            }
+            //        }
+            //        return model;
+            //    }
+            //}
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show(ex.Message, "", MessageBoxButton.OK, MessageBoxImage.Error);
+            //    return null;
+            //}
+            return null;
         }
 
 
@@ -182,27 +197,28 @@ namespace ColorManager.DataBase.Queries
         /// <returns>true при наличии продукта/false при его отсутствии</returns>
         public static ColorSelectionModel GetInStockInfo(ColorSelectionModel model)
         {
-            try
-            {
-                using (var db = new ApplicationContext())
-                {
-                    bool inStockInfo = false;
-                    foreach (Palletters palletter in db.Palletters)
-                    {
-                        if (palletter.ProductGroup == model.ProductGroup && palletter.ColorFan == model.ColorFan && palletter.Color == model.Color && palletter.ColorValue == model.ColorValue)
-                        {
-                            model.InStockInfo = palletter.InStock;
-                            break;
-                        }
-                    }
-                    return model;
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "", MessageBoxButton.OK, MessageBoxImage.Error);
-                return null;
-            }
+            //try
+            //{
+            //    using (var db = new ApplicationContext())
+            //    {
+            //        bool inStockInfo = false;
+            //        foreach (Palettes palletter in db.Palettes)
+            //        {
+            //            if (palletter.ProductGroup == model.ProductGroup && palletter.ColorFan == model.ColorFan && palletter.Color == model.Color && palletter.ColorValue == model.ColorValue)
+            //            {
+            //                model.InStockInfo = palletter.InStock;
+            //                break;
+            //            }
+            //        }
+            //        return model;
+            //    }
+            //}
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show(ex.Message, "", MessageBoxButton.OK, MessageBoxImage.Error);
+            //    return null;
+            //}
+            return null;
         }
     }
 }

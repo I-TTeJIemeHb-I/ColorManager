@@ -1,12 +1,7 @@
 ﻿using ColorManager.Data.Models;
-using ColorManager.DataBase.Queries;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
 
 namespace ColorManager.Data.ViewModels
@@ -23,67 +18,81 @@ namespace ColorManager.Data.ViewModels
 
         #endregion
 
-        public List<string> ProductGroup;
-        public List<string> ColorFan;
-        public List<string> Color;
-        public string SelectedItemProductGroup;
-        public string SelectedItemColorFan;
-        public string SelectedItemColor;
+
+        // Model для данной ViewModel. Получаем её из конструктора класса
+        public ColorSelectionModel selectionModel { get; private set; }
+        // Конструктор класса ColorSelectionViewModel
+        public ColorSelectionViewModel()
+        {
+            selectionModel = ColorSelectionModel.getInstance();
+        }
+
 
         #region Команды ViewModel
 
-        private RelayCommand _getStockInfo;
-        private RelayCommand _windowLoaded;
-        private RelayCommand _getColorFan;
-        private RelayCommand _getColor;
+        private RelayCommand _ProductGroupSelectionChanged; // Событие при изменении выбора в ProductGroup_ComboBox
+        private RelayCommand _ColorFanSelectionChanged;     // аналогично первому
+        private RelayCommand _ColorSelectionChanged;        // аналогично первому
+        private RelayCommand _AddColor;                     // Событие нажатия на кнопку Apple
 
-        public RelayCommand GetInfo
+        public RelayCommand ProductGroupSelectionChanged
         {
             get
             {
-                return _getStockInfo ??=
+
+                return _ProductGroupSelectionChanged ??=
                     new RelayCommand(obj =>
                     {
-                       
+                        // Получаем из переданного команде параметра ComboBox
+                        ComboBox comboBox = obj as ComboBox;
+                        // Из ComboBox берём Value выбранного Item
+                        string value = (string)comboBox.SelectedValue;
+                        // Передаём значение в свойство модели, которая сама
+                        // вызывает соответствующий метод для обновления списка
+                        selectionModel.ProductGroupSelected = value;
                     });
             }
         }
 
-        public RelayCommand WindowLoaded
+        public RelayCommand ColorFanSelectionChanged
         {
             get
             {
 
-                return _windowLoaded ??=
+                return _ColorFanSelectionChanged ??=
                     new RelayCommand(obj =>
                     {
-                        ProductGroup = PallettersQuery.GetProductGroup();
+                        ComboBox comboBox = obj as ComboBox;
+                        string value = (string)comboBox.SelectedValue;
+                        selectionModel.ColorFanSelected = value;
                     });
             }
         }
 
-        public RelayCommand GetColorFan
+        public RelayCommand ColorSelectionChanged
         {
             get
             {
 
-                return _getColorFan ??=
+                return _ColorSelectionChanged ??=
                     new RelayCommand(obj =>
                     {
-                        ColorFan = PallettersQuery.GetColorFan(SelectedItemProductGroup);
+                        ComboBox comboBox = obj as ComboBox;
+                        string value = (string)comboBox.SelectedValue;
+                        selectionModel.ColorSelected = value;
                     });
             }
         }
 
-        public RelayCommand GetColor
+        public RelayCommand AddColor
         {
             get
             {
 
-                return _getColor ??=
+                return _AddColor ??=
                     new RelayCommand(obj =>
                     {
-                        Color = PallettersQuery.GetColor(SelectedItemProductGroup, SelectedItemColorFan);
+                        MessageBox.Show($"Будет добавлен следующий продукт:\nProductGroup - {selectionModel.ProductGroupSelected}\nColorFan - {selectionModel.ColorFanSelected}\nColor - {selectionModel.ColorSelected}");
                     });
             }
         }
